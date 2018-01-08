@@ -13,8 +13,10 @@
 		6679B67A1FFE42F20033F05F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6679B6791FFE42F20033F05F /* Assets.xcassets */; };
 		6679B67D1FFE42F20033F05F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6679B67B1FFE42F20033F05F /* LaunchScreen.storyboard */; };
 		6679B6801FFE42F20033F05F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6679B67F1FFE42F20033F05F /* main.m */; };
-		6679B6951FFE66530033F05F /* SMVertexShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 6679B6941FFE66530033F05F /* SMVertexShader.vsh */; };
-		6679B6971FFE66A60033F05F /* SMFragmentShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6679B6961FFE66A60033F05F /* SMFragmentShader.fsh */; };
+		DB687E3920034892007A7D4E /* SMHelloWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = DB687E3820034892007A7D4E /* SMHelloWorld.m */; };
+		DB687E3C20034D26007A7D4E /* SMTwoTriangles.m in Sources */ = {isa = PBXBuildFile; fileRef = DB687E3B20034D26007A7D4E /* SMTwoTriangles.m */; };
+		DB687E3E20034F2A007A7D4E /* SMVertice.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DB687E3D20034F2A007A7D4E /* SMVertice.vsh */; };
+		DB687E4020034F57007A7D4E /* SMFragment.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DB687E3F20034F57007A7D4E /* SMFragment.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,8 +31,12 @@
 		6679B67E1FFE42F20033F05F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6679B67F1FFE42F20033F05F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6679B6871FFE430F0033F05F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
-		6679B6941FFE66530033F05F /* SMVertexShader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMVertexShader.vsh; sourceTree = "<group>"; };
-		6679B6961FFE66A60033F05F /* SMFragmentShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMFragmentShader.fsh; sourceTree = "<group>"; };
+		DB687E3720034892007A7D4E /* SMHelloWorld.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMHelloWorld.h; sourceTree = "<group>"; };
+		DB687E3820034892007A7D4E /* SMHelloWorld.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMHelloWorld.m; sourceTree = "<group>"; };
+		DB687E3A20034D26007A7D4E /* SMTwoTriangles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMTwoTriangles.h; sourceTree = "<group>"; };
+		DB687E3B20034D26007A7D4E /* SMTwoTriangles.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMTwoTriangles.m; sourceTree = "<group>"; };
+		DB687E3D20034F2A007A7D4E /* SMVertice.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMVertice.vsh; sourceTree = "<group>"; };
+		DB687E3F20034F57007A7D4E /* SMFragment.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMFragment.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,13 +74,17 @@
 				6679B6711FFE42F20033F05F /* AppDelegate.m */,
 				6679B6731FFE42F20033F05F /* ViewController.h */,
 				6679B6741FFE42F20033F05F /* ViewController.m */,
+				DB687E3720034892007A7D4E /* SMHelloWorld.h */,
+				DB687E3820034892007A7D4E /* SMHelloWorld.m */,
+				DB687E3A20034D26007A7D4E /* SMTwoTriangles.h */,
+				DB687E3B20034D26007A7D4E /* SMTwoTriangles.m */,
 				6679B6761FFE42F20033F05F /* Main.storyboard */,
 				6679B6791FFE42F20033F05F /* Assets.xcassets */,
 				6679B67B1FFE42F20033F05F /* LaunchScreen.storyboard */,
 				6679B67E1FFE42F20033F05F /* Info.plist */,
 				6679B67F1FFE42F20033F05F /* main.m */,
-				6679B6941FFE66530033F05F /* SMVertexShader.vsh */,
-				6679B6961FFE66A60033F05F /* SMFragmentShader.fsh */,
+				DB687E3D20034F2A007A7D4E /* SMVertice.vsh */,
+				DB687E3F20034F57007A7D4E /* SMFragment.fsh */,
 			);
 			path = LearnOpenGL_HelloWorld;
 			sourceTree = "<group>";
@@ -146,11 +156,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6679B6971FFE66A60033F05F /* SMFragmentShader.fsh in Resources */,
 				6679B67D1FFE42F20033F05F /* LaunchScreen.storyboard in Resources */,
 				6679B67A1FFE42F20033F05F /* Assets.xcassets in Resources */,
-				6679B6951FFE66530033F05F /* SMVertexShader.vsh in Resources */,
+				DB687E3E20034F2A007A7D4E /* SMVertice.vsh in Resources */,
 				6679B6781FFE42F20033F05F /* Main.storyboard in Resources */,
+				DB687E4020034F57007A7D4E /* SMFragment.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,8 +172,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6679B6751FFE42F20033F05F /* ViewController.m in Sources */,
+				DB687E3920034892007A7D4E /* SMHelloWorld.m in Sources */,
 				6679B6801FFE42F20033F05F /* main.m in Sources */,
 				6679B6721FFE42F20033F05F /* AppDelegate.m in Sources */,
+				DB687E3C20034D26007A7D4E /* SMTwoTriangles.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +310,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M48D8E2LQ6;
+				DEVELOPMENT_TEAM = 94M6N7L4MK;
 				INFOPLIST_FILE = LearnOpenGL_HelloWorld/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Samueler.LearnOpenGL-HelloWorld";
@@ -312,7 +324,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M48D8E2LQ6;
+				DEVELOPMENT_TEAM = 94M6N7L4MK;
 				INFOPLIST_FILE = LearnOpenGL_HelloWorld/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Samueler.LearnOpenGL-HelloWorld";
