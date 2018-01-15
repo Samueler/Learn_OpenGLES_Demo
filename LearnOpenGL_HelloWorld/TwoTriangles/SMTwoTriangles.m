@@ -74,7 +74,9 @@ float secondTriangle[] = {
 
 - (void)setupShader {
     self.vShader = [self setupShader:GL_VERTEX_SHADER source:@"SMVertice.vsh"];
-    self.fShader = [self setupShader:GL_FRAGMENT_SHADER source:@"SMFragment.fsh"];
+//    self.fShader = [self setupShader:GL_FRAGMENT_SHADER source:@"SMFragment.fsh"];
+    // 使用Unifom
+    self.fShader = [self setupShader:GL_FRAGMENT_SHADER source:@"SMUniform.fsh"];
 }
 
 - (GLuint)setupShader:(GLenum)shaderType source:(NSString *)sourceFileName {
@@ -178,6 +180,10 @@ float secondTriangle[] = {
     glClear(GL_COLOR_BUFFER_BIT);
     
     glUseProgram(self.program);
+    
+    // 使用uniform
+    int vertexColorLoaction = glGetUniformLocation(self.program, "ourColor");
+    glUniform4f(vertexColorLoaction, 0.4, 0.3, 0.6, 1);
     
     glBindVertexArray(VAOs[0]);
     

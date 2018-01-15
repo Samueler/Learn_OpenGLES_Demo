@@ -17,6 +17,10 @@
 		DB687E3C20034D26007A7D4E /* SMTwoTriangles.m in Sources */ = {isa = PBXBuildFile; fileRef = DB687E3B20034D26007A7D4E /* SMTwoTriangles.m */; };
 		DB687E3E20034F2A007A7D4E /* SMVertice.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DB687E3D20034F2A007A7D4E /* SMVertice.vsh */; };
 		DB687E4020034F57007A7D4E /* SMFragment.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DB687E3F20034F57007A7D4E /* SMFragment.fsh */; };
+		DB82D58A200C524B00440D22 /* SMUniform.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DB82D589200C524B00440D22 /* SMUniform.fsh */; };
+		DB82D58C200C55C100440D22 /* SMLearnShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DB82D58B200C55C100440D22 /* SMLearnShader.vsh */; };
+		DB82D58E200C55D100440D22 /* SMLearnShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DB82D58D200C55D100440D22 /* SMLearnShader.fsh */; };
+		DB82D592200C56FB00440D22 /* SMLearnShaderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB82D591200C56FB00440D22 /* SMLearnShaderVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,11 @@
 		DB687E3B20034D26007A7D4E /* SMTwoTriangles.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMTwoTriangles.m; sourceTree = "<group>"; };
 		DB687E3D20034F2A007A7D4E /* SMVertice.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMVertice.vsh; sourceTree = "<group>"; };
 		DB687E3F20034F57007A7D4E /* SMFragment.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMFragment.fsh; sourceTree = "<group>"; };
+		DB82D589200C524B00440D22 /* SMUniform.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMUniform.fsh; sourceTree = "<group>"; };
+		DB82D58B200C55C100440D22 /* SMLearnShader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMLearnShader.vsh; sourceTree = "<group>"; };
+		DB82D58D200C55D100440D22 /* SMLearnShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMLearnShader.fsh; sourceTree = "<group>"; };
+		DB82D590200C56FB00440D22 /* SMLearnShaderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMLearnShaderVC.h; sourceTree = "<group>"; };
+		DB82D591200C56FB00440D22 /* SMLearnShaderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMLearnShaderVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,21 +79,20 @@
 		6679B66F1FFE42F20033F05F /* LearnOpenGL_HelloWorld */ = {
 			isa = PBXGroup;
 			children = (
+				DB82D587200C4D6C00440D22 /* VerticeShaders */,
+				DB82D588200C4D8B00440D22 /* FragmentShaders */,
+				DB82D585200C4D4200440D22 /* HelloWorld */,
+				DB82D586200C4D5400440D22 /* TwoTriangles */,
+				DB82D58F200C56CB00440D22 /* LearnShaders */,
 				6679B6701FFE42F20033F05F /* AppDelegate.h */,
 				6679B6711FFE42F20033F05F /* AppDelegate.m */,
 				6679B6731FFE42F20033F05F /* ViewController.h */,
 				6679B6741FFE42F20033F05F /* ViewController.m */,
-				DB687E3720034892007A7D4E /* SMHelloWorld.h */,
-				DB687E3820034892007A7D4E /* SMHelloWorld.m */,
-				DB687E3A20034D26007A7D4E /* SMTwoTriangles.h */,
-				DB687E3B20034D26007A7D4E /* SMTwoTriangles.m */,
 				6679B6761FFE42F20033F05F /* Main.storyboard */,
 				6679B6791FFE42F20033F05F /* Assets.xcassets */,
 				6679B67B1FFE42F20033F05F /* LaunchScreen.storyboard */,
 				6679B67E1FFE42F20033F05F /* Info.plist */,
 				6679B67F1FFE42F20033F05F /* main.m */,
-				DB687E3D20034F2A007A7D4E /* SMVertice.vsh */,
-				DB687E3F20034F57007A7D4E /* SMFragment.fsh */,
 			);
 			path = LearnOpenGL_HelloWorld;
 			sourceTree = "<group>";
@@ -95,6 +103,52 @@
 				6679B6871FFE430F0033F05F /* OpenGLES.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB82D585200C4D4200440D22 /* HelloWorld */ = {
+			isa = PBXGroup;
+			children = (
+				DB687E3720034892007A7D4E /* SMHelloWorld.h */,
+				DB687E3820034892007A7D4E /* SMHelloWorld.m */,
+			);
+			path = HelloWorld;
+			sourceTree = "<group>";
+		};
+		DB82D586200C4D5400440D22 /* TwoTriangles */ = {
+			isa = PBXGroup;
+			children = (
+				DB687E3A20034D26007A7D4E /* SMTwoTriangles.h */,
+				DB687E3B20034D26007A7D4E /* SMTwoTriangles.m */,
+			);
+			path = TwoTriangles;
+			sourceTree = "<group>";
+		};
+		DB82D587200C4D6C00440D22 /* VerticeShaders */ = {
+			isa = PBXGroup;
+			children = (
+				DB687E3D20034F2A007A7D4E /* SMVertice.vsh */,
+				DB82D58B200C55C100440D22 /* SMLearnShader.vsh */,
+			);
+			path = VerticeShaders;
+			sourceTree = "<group>";
+		};
+		DB82D588200C4D8B00440D22 /* FragmentShaders */ = {
+			isa = PBXGroup;
+			children = (
+				DB687E3F20034F57007A7D4E /* SMFragment.fsh */,
+				DB82D589200C524B00440D22 /* SMUniform.fsh */,
+				DB82D58D200C55D100440D22 /* SMLearnShader.fsh */,
+			);
+			path = FragmentShaders;
+			sourceTree = "<group>";
+		};
+		DB82D58F200C56CB00440D22 /* LearnShaders */ = {
+			isa = PBXGroup;
+			children = (
+				DB82D590200C56FB00440D22 /* SMLearnShaderVC.h */,
+				DB82D591200C56FB00440D22 /* SMLearnShaderVC.m */,
+			);
+			path = LearnShaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,9 +211,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6679B67D1FFE42F20033F05F /* LaunchScreen.storyboard in Resources */,
+				DB82D58E200C55D100440D22 /* SMLearnShader.fsh in Resources */,
+				DB82D58C200C55C100440D22 /* SMLearnShader.vsh in Resources */,
 				6679B67A1FFE42F20033F05F /* Assets.xcassets in Resources */,
 				DB687E3E20034F2A007A7D4E /* SMVertice.vsh in Resources */,
 				6679B6781FFE42F20033F05F /* Main.storyboard in Resources */,
+				DB82D58A200C524B00440D22 /* SMUniform.fsh in Resources */,
 				DB687E4020034F57007A7D4E /* SMFragment.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,6 +230,7 @@
 			files = (
 				6679B6751FFE42F20033F05F /* ViewController.m in Sources */,
 				DB687E3920034892007A7D4E /* SMHelloWorld.m in Sources */,
+				DB82D592200C56FB00440D22 /* SMLearnShaderVC.m in Sources */,
 				6679B6801FFE42F20033F05F /* main.m in Sources */,
 				6679B6721FFE42F20033F05F /* AppDelegate.m in Sources */,
 				DB687E3C20034D26007A7D4E /* SMTwoTriangles.m in Sources */,
