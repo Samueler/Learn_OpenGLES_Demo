@@ -10,6 +10,7 @@
 #import "SMHelloWorld.h"
 #import "SMTwoTriangles.h"
 #import "SMLearnShaderVC.h"
+#import "SMLearnTextureVC.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -24,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.datas = @[@"Hello World!", @"Two Triangle", @"Learn Shaders"];
+    self.datas = @[@"Hello World!", @"Two Triangle", @"Learn Shaders", @"Texture"];
     [self.view addSubview:self.tableView];
 }
 
@@ -53,6 +54,9 @@
     } else if (indexPath.row == 2) {
         SMLearnShaderVC *learnShadervc = [[SMLearnShaderVC alloc] init];
         [self.navigationController pushViewController:learnShadervc animated:YES];
+    } else if (indexPath.row == 3) {
+        SMLearnTextureVC *texturevc = [[SMLearnTextureVC alloc] init];
+        [self.navigationController pushViewController:texturevc animated:YES];
     }
 }
 

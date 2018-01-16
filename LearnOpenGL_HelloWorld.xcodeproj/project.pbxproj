@@ -13,10 +13,16 @@
 		6679B67A1FFE42F20033F05F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6679B6791FFE42F20033F05F /* Assets.xcassets */; };
 		6679B67D1FFE42F20033F05F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6679B67B1FFE42F20033F05F /* LaunchScreen.storyboard */; };
 		6679B6801FFE42F20033F05F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6679B67F1FFE42F20033F05F /* main.m */; };
+		DB4D9AB5200DFBCD007C6259 /* kobe.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DB4D9AB4200DFBCD007C6259 /* kobe.jpg */; };
+		DB4D9AB7200E044B007C6259 /* wuyanzu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DB4D9AB6200E044B007C6259 /* wuyanzu.jpg */; };
 		DB687E3920034892007A7D4E /* SMHelloWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = DB687E3820034892007A7D4E /* SMHelloWorld.m */; };
 		DB687E3C20034D26007A7D4E /* SMTwoTriangles.m in Sources */ = {isa = PBXBuildFile; fileRef = DB687E3B20034D26007A7D4E /* SMTwoTriangles.m */; };
 		DB687E3E20034F2A007A7D4E /* SMVertice.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DB687E3D20034F2A007A7D4E /* SMVertice.vsh */; };
 		DB687E4020034F57007A7D4E /* SMFragment.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DB687E3F20034F57007A7D4E /* SMFragment.fsh */; };
+		DB7AEA57200DA74B007BBE6B /* SMShaderCompiler.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7AEA56200DA74B007BBE6B /* SMShaderCompiler.m */; };
+		DB7AEA5B200DB09B007BBE6B /* SMLearnTextureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7AEA5A200DB09B007BBE6B /* SMLearnTextureVC.m */; };
+		DB7AEA5D200DD5AC007BBE6B /* SMTexture.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DB7AEA5C200DD5AC007BBE6B /* SMTexture.vsh */; };
+		DB7AEA5F200DD5BD007BBE6B /* SMTexture.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DB7AEA5E200DD5BD007BBE6B /* SMTexture.fsh */; };
 		DB82D58A200C524B00440D22 /* SMUniform.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DB82D589200C524B00440D22 /* SMUniform.fsh */; };
 		DB82D58C200C55C100440D22 /* SMLearnShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DB82D58B200C55C100440D22 /* SMLearnShader.vsh */; };
 		DB82D58E200C55D100440D22 /* SMLearnShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DB82D58D200C55D100440D22 /* SMLearnShader.fsh */; };
@@ -35,12 +41,20 @@
 		6679B67E1FFE42F20033F05F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6679B67F1FFE42F20033F05F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6679B6871FFE430F0033F05F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		DB4D9AB4200DFBCD007C6259 /* kobe.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kobe.jpg; sourceTree = "<group>"; };
+		DB4D9AB6200E044B007C6259 /* wuyanzu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wuyanzu.jpg; sourceTree = "<group>"; };
 		DB687E3720034892007A7D4E /* SMHelloWorld.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMHelloWorld.h; sourceTree = "<group>"; };
 		DB687E3820034892007A7D4E /* SMHelloWorld.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMHelloWorld.m; sourceTree = "<group>"; };
 		DB687E3A20034D26007A7D4E /* SMTwoTriangles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMTwoTriangles.h; sourceTree = "<group>"; };
 		DB687E3B20034D26007A7D4E /* SMTwoTriangles.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMTwoTriangles.m; sourceTree = "<group>"; };
 		DB687E3D20034F2A007A7D4E /* SMVertice.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMVertice.vsh; sourceTree = "<group>"; };
 		DB687E3F20034F57007A7D4E /* SMFragment.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMFragment.fsh; sourceTree = "<group>"; };
+		DB7AEA55200DA74B007BBE6B /* SMShaderCompiler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMShaderCompiler.h; sourceTree = "<group>"; };
+		DB7AEA56200DA74B007BBE6B /* SMShaderCompiler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMShaderCompiler.m; sourceTree = "<group>"; };
+		DB7AEA59200DB09B007BBE6B /* SMLearnTextureVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMLearnTextureVC.h; sourceTree = "<group>"; };
+		DB7AEA5A200DB09B007BBE6B /* SMLearnTextureVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMLearnTextureVC.m; sourceTree = "<group>"; };
+		DB7AEA5C200DD5AC007BBE6B /* SMTexture.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMTexture.vsh; sourceTree = "<group>"; };
+		DB7AEA5E200DD5BD007BBE6B /* SMTexture.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMTexture.fsh; sourceTree = "<group>"; };
 		DB82D589200C524B00440D22 /* SMUniform.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMUniform.fsh; sourceTree = "<group>"; };
 		DB82D58B200C55C100440D22 /* SMLearnShader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMLearnShader.vsh; sourceTree = "<group>"; };
 		DB82D58D200C55D100440D22 /* SMLearnShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMLearnShader.fsh; sourceTree = "<group>"; };
@@ -79,11 +93,14 @@
 		6679B66F1FFE42F20033F05F /* LearnOpenGL_HelloWorld */ = {
 			isa = PBXGroup;
 			children = (
+				DB4D9AB3200DFBBD007C6259 /* Resource */,
+				DB7AEA54200DA725007BBE6B /* ShaderCompiler */,
 				DB82D587200C4D6C00440D22 /* VerticeShaders */,
 				DB82D588200C4D8B00440D22 /* FragmentShaders */,
 				DB82D585200C4D4200440D22 /* HelloWorld */,
 				DB82D586200C4D5400440D22 /* TwoTriangles */,
 				DB82D58F200C56CB00440D22 /* LearnShaders */,
+				DB7AEA58200DB077007BBE6B /* Texture */,
 				6679B6701FFE42F20033F05F /* AppDelegate.h */,
 				6679B6711FFE42F20033F05F /* AppDelegate.m */,
 				6679B6731FFE42F20033F05F /* ViewController.h */,
@@ -103,6 +120,33 @@
 				6679B6871FFE430F0033F05F /* OpenGLES.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB4D9AB3200DFBBD007C6259 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				DB4D9AB6200E044B007C6259 /* wuyanzu.jpg */,
+				DB4D9AB4200DFBCD007C6259 /* kobe.jpg */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		DB7AEA54200DA725007BBE6B /* ShaderCompiler */ = {
+			isa = PBXGroup;
+			children = (
+				DB7AEA55200DA74B007BBE6B /* SMShaderCompiler.h */,
+				DB7AEA56200DA74B007BBE6B /* SMShaderCompiler.m */,
+			);
+			path = ShaderCompiler;
+			sourceTree = "<group>";
+		};
+		DB7AEA58200DB077007BBE6B /* Texture */ = {
+			isa = PBXGroup;
+			children = (
+				DB7AEA59200DB09B007BBE6B /* SMLearnTextureVC.h */,
+				DB7AEA5A200DB09B007BBE6B /* SMLearnTextureVC.m */,
+			);
+			path = Texture;
 			sourceTree = "<group>";
 		};
 		DB82D585200C4D4200440D22 /* HelloWorld */ = {
@@ -128,6 +172,7 @@
 			children = (
 				DB687E3D20034F2A007A7D4E /* SMVertice.vsh */,
 				DB82D58B200C55C100440D22 /* SMLearnShader.vsh */,
+				DB7AEA5C200DD5AC007BBE6B /* SMTexture.vsh */,
 			);
 			path = VerticeShaders;
 			sourceTree = "<group>";
@@ -138,6 +183,7 @@
 				DB687E3F20034F57007A7D4E /* SMFragment.fsh */,
 				DB82D589200C524B00440D22 /* SMUniform.fsh */,
 				DB82D58D200C55D100440D22 /* SMLearnShader.fsh */,
+				DB7AEA5E200DD5BD007BBE6B /* SMTexture.fsh */,
 			);
 			path = FragmentShaders;
 			sourceTree = "<group>";
@@ -211,12 +257,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				6679B67D1FFE42F20033F05F /* LaunchScreen.storyboard in Resources */,
+				DB4D9AB7200E044B007C6259 /* wuyanzu.jpg in Resources */,
 				DB82D58E200C55D100440D22 /* SMLearnShader.fsh in Resources */,
 				DB82D58C200C55C100440D22 /* SMLearnShader.vsh in Resources */,
 				6679B67A1FFE42F20033F05F /* Assets.xcassets in Resources */,
+				DB4D9AB5200DFBCD007C6259 /* kobe.jpg in Resources */,
 				DB687E3E20034F2A007A7D4E /* SMVertice.vsh in Resources */,
 				6679B6781FFE42F20033F05F /* Main.storyboard in Resources */,
 				DB82D58A200C524B00440D22 /* SMUniform.fsh in Resources */,
+				DB7AEA5F200DD5BD007BBE6B /* SMTexture.fsh in Resources */,
+				DB7AEA5D200DD5AC007BBE6B /* SMTexture.vsh in Resources */,
 				DB687E4020034F57007A7D4E /* SMFragment.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,8 +279,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6679B6751FFE42F20033F05F /* ViewController.m in Sources */,
+				DB7AEA5B200DB09B007BBE6B /* SMLearnTextureVC.m in Sources */,
 				DB687E3920034892007A7D4E /* SMHelloWorld.m in Sources */,
 				DB82D592200C56FB00440D22 /* SMLearnShaderVC.m in Sources */,
+				DB7AEA57200DA74B007BBE6B /* SMShaderCompiler.m in Sources */,
 				6679B6801FFE42F20033F05F /* main.m in Sources */,
 				6679B6721FFE42F20033F05F /* AppDelegate.m in Sources */,
 				DB687E3C20034D26007A7D4E /* SMTwoTriangles.m in Sources */,
