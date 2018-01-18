@@ -7,11 +7,8 @@
 //
 
 #import "SMShaderCompiler.h"
-#import <OpenGLES/ES3/gl.h>
 
-@implementation SMShaderCompiler {
-    GLuint _program;
-}
+@implementation SMShaderCompiler 
 
 - (instancetype)initShaderCompilerWithVertex:(NSString *)vertexFileName fragment:(NSString *)fragmentFileName {
     if (self = [super init]) {

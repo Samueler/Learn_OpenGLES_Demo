@@ -14,7 +14,6 @@
 		6679B67D1FFE42F20033F05F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6679B67B1FFE42F20033F05F /* LaunchScreen.storyboard */; };
 		6679B6801FFE42F20033F05F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6679B67F1FFE42F20033F05F /* main.m */; };
 		DB4D9AB5200DFBCD007C6259 /* kobe.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DB4D9AB4200DFBCD007C6259 /* kobe.jpg */; };
-		DB4D9AB7200E044B007C6259 /* wuyanzu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DB4D9AB6200E044B007C6259 /* wuyanzu.jpg */; };
 		DB687E3920034892007A7D4E /* SMHelloWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = DB687E3820034892007A7D4E /* SMHelloWorld.m */; };
 		DB687E3C20034D26007A7D4E /* SMTwoTriangles.m in Sources */ = {isa = PBXBuildFile; fileRef = DB687E3B20034D26007A7D4E /* SMTwoTriangles.m */; };
 		DB687E3E20034F2A007A7D4E /* SMVertice.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DB687E3D20034F2A007A7D4E /* SMVertice.vsh */; };
@@ -42,7 +41,6 @@
 		6679B67F1FFE42F20033F05F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6679B6871FFE430F0033F05F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		DB4D9AB4200DFBCD007C6259 /* kobe.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kobe.jpg; sourceTree = "<group>"; };
-		DB4D9AB6200E044B007C6259 /* wuyanzu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wuyanzu.jpg; sourceTree = "<group>"; };
 		DB687E3720034892007A7D4E /* SMHelloWorld.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMHelloWorld.h; sourceTree = "<group>"; };
 		DB687E3820034892007A7D4E /* SMHelloWorld.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMHelloWorld.m; sourceTree = "<group>"; };
 		DB687E3A20034D26007A7D4E /* SMTwoTriangles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMTwoTriangles.h; sourceTree = "<group>"; };
@@ -125,7 +123,6 @@
 		DB4D9AB3200DFBBD007C6259 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				DB4D9AB6200E044B007C6259 /* wuyanzu.jpg */,
 				DB4D9AB4200DFBCD007C6259 /* kobe.jpg */,
 			);
 			path = Resource;
@@ -257,7 +254,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6679B67D1FFE42F20033F05F /* LaunchScreen.storyboard in Resources */,
-				DB4D9AB7200E044B007C6259 /* wuyanzu.jpg in Resources */,
 				DB82D58E200C55D100440D22 /* SMLearnShader.fsh in Resources */,
 				DB82D58C200C55C100440D22 /* SMLearnShader.vsh in Resources */,
 				6679B67A1FFE42F20033F05F /* Assets.xcassets in Resources */,

@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <OpenGLES/ES3/gl.h>
 
 @interface SMShaderCompiler : NSObject
+
+@property (nonatomic, assign) GLuint program;
 
 - (instancetype)initShaderCompilerWithVertex:(NSString *)VertexFileName fragment:(NSString *)fragmentFileName;
 

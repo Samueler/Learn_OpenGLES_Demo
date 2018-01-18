@@ -35,7 +35,7 @@
     
     [self setupContext];
     [self setupShaders];
-    [self setupTextures];
+    [self setupTextureFromImage:[UIImage imageNamed:@"kobe.jpg"]];
     [self setupVAOAndVBOAndEBO];
 }
 
@@ -53,27 +53,22 @@
     self.shaderCompiler = [[SMShaderCompiler alloc] initShaderCompilerWithVertex:@"SMTexture.vsh" fragment:@"SMTexture.fsh"];
 }
 
-- (void)setupTextures {
+- (void)setupTextureFromImage:(UIImage *)image {
+    glEnable(GL_TEXTURE_2D);
     glGenTextures(1, &_texture);
     glBindTexture(GL_TEXTURE_2D, _texture);
     
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     
     
-    UIImage *img = [UIImage imageNamed:@"wuyanzu.jpg"];
-    CGImageRef imageRef = [img CGImage];
+    CGImageRef imageRef = [image CGImage];
     size_t width = CGImageGetWidth(imageRef);
     size_t height = CGImageGetHeight(imageRef);
-    
     GLubyte *textureData = (GLubyte *)malloc(width * height * 4);
-    
-//    CFDataRef dataFromImageDataProvider = CGDataProviderCopyData(CGImageGetDataProvider(imageRef));
-//
-//    textureData = (GLubyte *)CFDataGetBytePtr(dataFromImageDataProvider);
     
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     NSUInteger bytesPerPixel = 4;
@@ -86,19 +81,29 @@
     CGContextScaleCTM(context, 1.0f, -1.0f);
     CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
     
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (GLsizei)width, (GLsizei)height, 0, GL_RGB, GL_UNSIGNED_BYTE, textureData);
-    free(textureData);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)width, (GLsizei)height, 0, GL_RGBA, GL_UNSIGNED_BYTE, textureData);
     glGenerateMipmap(GL_TEXTURE_2D);
+    CGContextRelease(context);
+    CGColorSpaceRelease(colorSpace);
+    free(textureData);
+}
+
+- (void)activeTexture {
+    
+    glActiveTexture(GL_TEXTURE5);
+    glBindTexture(GL_TEXTURE_2D, _texture);
+    GLint location = glGetUniformLocation(_shaderCompiler.program, "ourTexture");
+    glUniform1f(location, 5);
 }
 
 - (void)setupVAOAndVBOAndEBO {
     
     float vertices[] = {
         // location    // colors       // texture
-        0.5,  0.5, 0,  1.0, 0.0, 0.0,  1.0, 1.0,
-        0.5, -0.5, 0,  0.0, 1.0, 0.0,  1.0, 0.0,
-       -0.5, -0.5, 0,  0.0, 0.0, 1.0,  0.0, 0.0,
-       -0.5,  0.5, 0,  1.0, 1.0, 1.0,  0.0, 1.0
+        1.0,  0.5, 0,  1.0, 0.0, 0.0,  1.0, 1.0,
+        1.0, -0.5, 0,  0.0, 1.0, 0.0,  1.0, 0.0,
+       -1.0, -0.5, 0,  0.0, 0.0, 1.0,  0.0, 0.0,
+       -1.0,  0.5, 0,  1.0, 1.0, 1.0,  0.0, 1.0
     };
     
     GLuint indices[] = {
@@ -123,7 +128,7 @@
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
     
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(2 * sizeof(float)));
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(6 * sizeof(float)));
     glEnableVertexAttribArray(2);
 }
 
