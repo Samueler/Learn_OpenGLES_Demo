@@ -1,26 +1,26 @@
 //
-//  SMLearnTextureVC.m
+//  SMTransformVC.m
 //  LearnOpenGL_HelloWorld
 //
-//  Created by Samueler on 2018/1/16.
+//  Created by Samueler on 2018/1/19.
 //  Copyright © 2018年 Samueler. All rights reserved.
 //
 
-#import "SMLearnTextureVC.h"
-#import "SMShaderCompiler.h"
+#import "SMTransformVC.h"
 #import <OpenGLES/ES3/gl.h>
 #import <GLKit/GLKit.h>
+#import "SMShaderCompiler.h"
 
-@interface SMLearnTextureVC () <GLKViewDelegate>
+@interface SMTransformVC () <GLKViewDelegate>
 
-@property (nonatomic, strong) EAGLContext *context;
 @property (nonatomic, strong) GLKView *glkView;
-@property (nonatomic, strong) SMShaderCompiler *shaderCompiler;
+@property (nonatomic, strong) EAGLContext *context;
+@property (nonatomic, strong) SMShaderCompiler *compiler;
 
 @end
 
-@implementation SMLearnTextureVC {
-    GLuint _VAO, _VBO, _EBO, _texture;
+@implementation SMTransformVC {
+    GLuint _texture, _VAO, _VBO, _EBO;
 }
 
 - (void)loadView {
@@ -31,7 +31,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     [self setupContext];
     [self setupShaders];
@@ -45,12 +44,11 @@
     
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
-    view.drawableDepthFormat = GLKViewDrawableColorFormatRGBA8888;
     view.delegate = self;
 }
 
 - (void)setupShaders {
-    self.shaderCompiler = [[SMShaderCompiler alloc] initShaderCompilerWithVertex:@"SMTexture.vsh" fragment:@"SMTexture.fsh"];
+    self.compiler = [[SMShaderCompiler alloc] initShaderCompilerWithVertex:@"SMTransform.vsh" fragment:@"SMTransform.fsh"];
 }
 
 - (void)setupTextureFromImage:(UIImage *)image {
@@ -91,11 +89,10 @@
 - (void)setupVAOAndVBOAndEBO {
     
     float vertices[] = {
-        // location    // colors       // texture
-        1.0,  0.5, 0,  1.0, 0.0, 0.0,  1.0, 1.0,
-        1.0, -0.5, 0,  0.0, 1.0, 0.0,  1.0, 0.0,
-       -1.0, -0.5, 0,  0.0, 0.0, 1.0,  0.0, 0.0,
-       -1.0,  0.5, 0,  1.0, 1.0, 1.0,  0.0, 1.0
+         0.5,  0.5, 0.0, 1.0, 1.0,
+         0.5, -0.5, 0.0, 1.0, 0.0,
+        -0.5, -0.5, 0.0, 0.0, 0.0,
+        -0.5,  0.5, 0.0, 0.0, 1.0
     };
     
     GLuint indices[] = {
@@ -103,35 +100,61 @@
         1, 2, 3
     };
     
-    glGenVertexArrays(1, &(_VAO));
+    glGenVertexArrays(1, &_VAO);
     glBindVertexArray(_VAO);
     
-    glGenBuffers(1, &(_VBO));
+    glGenBuffers(1, &_VBO);
     glBindBuffer(GL_ARRAY_BUFFER, _VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
     
-    glGenBuffers(1, &(_EBO));
+    glGenBuffers(1, &_EBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
     
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
-    
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void *)(6 * sizeof(float)));
-    glEnableVertexAttribArray(2);
 }
 
 - (void)startRender {
-    
-    glClearColor(0.2, 0.5, 0.8, 1);
+    glClearColor(0.5, 0.2, 0.4, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
     
-    glBindTexture(GL_TEXTURE_2D, _texture);
-    [self.shaderCompiler userProgram];
     glBindVertexArray(_VAO);
+    glBindTexture(GL_TEXTURE_2D, _texture);
+    [self.compiler userProgram];
+    
+    int location = glGetUniformLocation(self.compiler.program, "transformMatrix");
+
+//    float radians = 30 * 3.14159f / 180.0f;
+//    float s = sin(radians);
+//    float c = cos(radians);
+//
+//    GLfloat zRotation[] = {
+//          c,  -s, 0.0, 0.0,
+//          s,   c, 0.0, 0.0,
+//        0.0, 0.0, 1.0, 0.0,
+//        0.0, 0.0, 0.0, 1.0
+//    };
+//    glUniformMatrix4fv(location, 1, GL_FALSE, (GLfloat *)&zRotation[0]);
+    
+//    GLfloat transform[] = {
+//        1.0, 0.0, 0.0, 0.3,
+//        0.0, 1.1, 0.0, 0.2,
+//        0.0, 0.0, 1.0, 0.1,
+//        0.0, 0.0, 0.0, 1.0
+//    };
+//    glUniformMatrix4fv(location, 1, GL_FALSE, (GLfloat *)&transform[0]);
+    
+    GLfloat scale[] = {
+        1.0, 0.0, 0.0, 0.0,
+        0.0, 1.1, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0,
+        0.0, 0.0, 0.0, 1.0
+    };
+    glUniformMatrix4fv(location, 1, GL_FALSE, (GLfloat *)&scale[0]);
     
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }

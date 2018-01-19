@@ -26,6 +26,9 @@
 		DB82D58C200C55C100440D22 /* SMLearnShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DB82D58B200C55C100440D22 /* SMLearnShader.vsh */; };
 		DB82D58E200C55D100440D22 /* SMLearnShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DB82D58D200C55D100440D22 /* SMLearnShader.fsh */; };
 		DB82D592200C56FB00440D22 /* SMLearnShaderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB82D591200C56FB00440D22 /* SMLearnShaderVC.m */; };
+		DB9364B72011C9940052E633 /* SMTransformVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9364B62011C9940052E633 /* SMTransformVC.m */; };
+		DB9364B92011C9AE0052E633 /* SMTransform.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DB9364B82011C9AE0052E633 /* SMTransform.vsh */; };
+		DB9364BB2011C9BE0052E633 /* SMTransform.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DB9364BA2011C9BE0052E633 /* SMTransform.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +61,10 @@
 		DB82D58D200C55D100440D22 /* SMLearnShader.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMLearnShader.fsh; sourceTree = "<group>"; };
 		DB82D590200C56FB00440D22 /* SMLearnShaderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMLearnShaderVC.h; sourceTree = "<group>"; };
 		DB82D591200C56FB00440D22 /* SMLearnShaderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMLearnShaderVC.m; sourceTree = "<group>"; };
+		DB9364B52011C9940052E633 /* SMTransformVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMTransformVC.h; sourceTree = "<group>"; };
+		DB9364B62011C9940052E633 /* SMTransformVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMTransformVC.m; sourceTree = "<group>"; };
+		DB9364B82011C9AE0052E633 /* SMTransform.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMTransform.vsh; sourceTree = "<group>"; };
+		DB9364BA2011C9BE0052E633 /* SMTransform.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMTransform.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +106,7 @@
 				DB82D586200C4D5400440D22 /* TwoTriangles */,
 				DB82D58F200C56CB00440D22 /* LearnShaders */,
 				DB7AEA58200DB077007BBE6B /* Texture */,
+				DB9364B42011C9660052E633 /* Transform */,
 				6679B6701FFE42F20033F05F /* AppDelegate.h */,
 				6679B6711FFE42F20033F05F /* AppDelegate.m */,
 				6679B6731FFE42F20033F05F /* ViewController.h */,
@@ -170,6 +178,7 @@
 				DB687E3D20034F2A007A7D4E /* SMVertice.vsh */,
 				DB82D58B200C55C100440D22 /* SMLearnShader.vsh */,
 				DB7AEA5C200DD5AC007BBE6B /* SMTexture.vsh */,
+				DB9364B82011C9AE0052E633 /* SMTransform.vsh */,
 			);
 			path = VerticeShaders;
 			sourceTree = "<group>";
@@ -181,6 +190,7 @@
 				DB82D589200C524B00440D22 /* SMUniform.fsh */,
 				DB82D58D200C55D100440D22 /* SMLearnShader.fsh */,
 				DB7AEA5E200DD5BD007BBE6B /* SMTexture.fsh */,
+				DB9364BA2011C9BE0052E633 /* SMTransform.fsh */,
 			);
 			path = FragmentShaders;
 			sourceTree = "<group>";
@@ -192,6 +202,15 @@
 				DB82D591200C56FB00440D22 /* SMLearnShaderVC.m */,
 			);
 			path = LearnShaders;
+			sourceTree = "<group>";
+		};
+		DB9364B42011C9660052E633 /* Transform */ = {
+			isa = PBXGroup;
+			children = (
+				DB9364B52011C9940052E633 /* SMTransformVC.h */,
+				DB9364B62011C9940052E633 /* SMTransformVC.m */,
+			);
+			path = Transform;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,10 +278,12 @@
 				6679B67A1FFE42F20033F05F /* Assets.xcassets in Resources */,
 				DB4D9AB5200DFBCD007C6259 /* kobe.jpg in Resources */,
 				DB687E3E20034F2A007A7D4E /* SMVertice.vsh in Resources */,
+				DB9364BB2011C9BE0052E633 /* SMTransform.fsh in Resources */,
 				6679B6781FFE42F20033F05F /* Main.storyboard in Resources */,
 				DB82D58A200C524B00440D22 /* SMUniform.fsh in Resources */,
 				DB7AEA5F200DD5BD007BBE6B /* SMTexture.fsh in Resources */,
 				DB7AEA5D200DD5AC007BBE6B /* SMTexture.vsh in Resources */,
+				DB9364B92011C9AE0052E633 /* SMTransform.vsh in Resources */,
 				DB687E4020034F57007A7D4E /* SMFragment.fsh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -281,6 +302,7 @@
 				DB7AEA57200DA74B007BBE6B /* SMShaderCompiler.m in Sources */,
 				6679B6801FFE42F20033F05F /* main.m in Sources */,
 				6679B6721FFE42F20033F05F /* AppDelegate.m in Sources */,
+				DB9364B72011C9940052E633 /* SMTransformVC.m in Sources */,
 				DB687E3C20034D26007A7D4E /* SMTwoTriangles.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
