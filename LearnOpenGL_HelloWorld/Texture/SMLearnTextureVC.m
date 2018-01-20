@@ -58,6 +58,10 @@
     glGenTextures(1, &_texture);
     glBindTexture(GL_TEXTURE_2D, _texture);
     
+    // 参数说明:
+    // target: 指定纹理目标，在这里我们绘制的是2D纹理，所以使用GL_TEXTURE_2D，当然也有1D和3D纹理
+    //  pname: 指定设置的选项与应用纹理坐标（s、t、r对应顶点坐标的x、y、z）
+    //  param: 纹理环绕方式
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     
