@@ -12,6 +12,7 @@
 #import "SMLearnShaderVC.h"
 #import "SMLearnTextureVC.h"
 #import "SMTransformVC.h"
+#import "SMLearn3DVC.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -26,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.datas = @[@"Hello World!", @"Two Triangle", @"Learn Shaders", @"Texture", @"Transform"];
+    self.datas = @[@"Hello World!", @"Two Triangle", @"Learn Shaders", @"Texture", @"Transform", @"Learn 3D"];
     [self.view addSubview:self.tableView];
 }
 
@@ -61,6 +62,9 @@
     } else if (indexPath.row == 4) {
         SMTransformVC *transformvc = [[SMTransformVC alloc] init];
         [self.navigationController pushViewController:transformvc animated:YES];
+    } else if (indexPath.row == 5) {
+        SMLearn3DVC *threeDvc = [[SMLearn3DVC alloc] init];
+        [self.navigationController pushViewController:threeDvc animated:YES];
     }
 }
 
