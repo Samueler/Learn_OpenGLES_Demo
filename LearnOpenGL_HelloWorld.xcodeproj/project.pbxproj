@@ -29,12 +29,12 @@
 		DB9364B72011C9940052E633 /* SMTransformVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB9364B62011C9940052E633 /* SMTransformVC.m */; };
 		DB9364B92011C9AE0052E633 /* SMTransform.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DB9364B82011C9AE0052E633 /* SMTransform.vsh */; };
 		DB9364BB2011C9BE0052E633 /* SMTransform.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DB9364BA2011C9BE0052E633 /* SMTransform.fsh */; };
+		DBA97BF420200D3B00151C6D /* GLESMath.c in Sources */ = {isa = PBXBuildFile; fileRef = DBA97BF220200D3A00151C6D /* GLESMath.c */; };
 		DBC210A820131D5C006F054A /* box.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DBC210A720131D5C006F054A /* box.jpg */; };
 		DBC210AA20131D68006F054A /* smile.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC210A920131D68006F054A /* smile.png */; };
 		DBC210AE20131DAE006F054A /* SMLearn3DVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC210AD20131DAE006F054A /* SMLearn3DVC.m */; };
 		DBC210B020131EFF006F054A /* SMLearn3D.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DBC210AF20131EFF006F054A /* SMLearn3D.vsh */; };
 		DBC210B220131F18006F054A /* SMLearn3D.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DBC210B120131F18006F054A /* SMLearn3D.fsh */; };
-		DBC210B620133D7A006F054A /* SMMath.c in Sources */ = {isa = PBXBuildFile; fileRef = DBC210B420133D7A006F054A /* SMMath.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,14 +71,14 @@
 		DB9364B62011C9940052E633 /* SMTransformVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMTransformVC.m; sourceTree = "<group>"; };
 		DB9364B82011C9AE0052E633 /* SMTransform.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMTransform.vsh; sourceTree = "<group>"; };
 		DB9364BA2011C9BE0052E633 /* SMTransform.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMTransform.fsh; sourceTree = "<group>"; };
+		DBA97BF220200D3A00151C6D /* GLESMath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GLESMath.c; sourceTree = "<group>"; };
+		DBA97BF320200D3B00151C6D /* GLESMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLESMath.h; sourceTree = "<group>"; };
 		DBC210A720131D5C006F054A /* box.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = box.jpg; sourceTree = "<group>"; };
 		DBC210A920131D68006F054A /* smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smile.png; sourceTree = "<group>"; };
 		DBC210AC20131DAE006F054A /* SMLearn3DVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMLearn3DVC.h; sourceTree = "<group>"; };
 		DBC210AD20131DAE006F054A /* SMLearn3DVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMLearn3DVC.m; sourceTree = "<group>"; };
 		DBC210AF20131EFF006F054A /* SMLearn3D.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMLearn3D.vsh; sourceTree = "<group>"; };
 		DBC210B120131F18006F054A /* SMLearn3D.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMLearn3D.fsh; sourceTree = "<group>"; };
-		DBC210B420133D7A006F054A /* SMMath.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = SMMath.c; sourceTree = "<group>"; };
-		DBC210B520133D7A006F054A /* SMMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMMath.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,8 +245,8 @@
 		DBC210B320133D5B006F054A /* Math */ = {
 			isa = PBXGroup;
 			children = (
-				DBC210B420133D7A006F054A /* SMMath.c */,
-				DBC210B520133D7A006F054A /* SMMath.h */,
+				DBA97BF220200D3A00151C6D /* GLESMath.c */,
+				DBA97BF320200D3B00151C6D /* GLESMath.h */,
 			);
 			path = Math;
 			sourceTree = "<group>";
@@ -339,8 +339,8 @@
 			files = (
 				6679B6751FFE42F20033F05F /* ViewController.m in Sources */,
 				DB7AEA5B200DB09B007BBE6B /* SMLearnTextureVC.m in Sources */,
-				DBC210B620133D7A006F054A /* SMMath.c in Sources */,
 				DB687E3920034892007A7D4E /* SMHelloWorld.m in Sources */,
+				DBA97BF420200D3B00151C6D /* GLESMath.c in Sources */,
 				DB82D592200C56FB00440D22 /* SMLearnShaderVC.m in Sources */,
 				DB7AEA57200DA74B007BBE6B /* SMShaderCompiler.m in Sources */,
 				6679B6801FFE42F20033F05F /* main.m in Sources */,

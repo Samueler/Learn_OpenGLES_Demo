@@ -2,7 +2,7 @@
 //  SMLearn3DVC.h
 //  LearnOpenGL_HelloWorld
 //
-//  Created by Douqu on 2018/1/20.
+//  Created by Samueler on 2018/1/20.
 //  Copyright © 2018年 Samueler. All rights reserved.
 //
 
