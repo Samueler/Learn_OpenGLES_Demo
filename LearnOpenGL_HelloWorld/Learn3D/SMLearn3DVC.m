@@ -40,6 +40,8 @@
     [self setupShaders];
     [self setupTextures];
     [self setupVAOAndVBOAndEBO];
+    
+    [self setupTimer];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -50,7 +52,9 @@
     }
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+#pragma mark - Timer Functions
+
+- (void)setupTimer {
     _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
     dispatch_source_set_timer(_timer, DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
     dispatch_source_set_event_handler(_timer, ^{
@@ -59,6 +63,8 @@
     });
     dispatch_resume(_timer);
 }
+
+#pragma mark - Render Functions
 
 - (void)setupContext {
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
