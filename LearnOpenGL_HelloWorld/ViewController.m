@@ -13,6 +13,8 @@
 #import "SMLearnTextureVC.h"
 #import "SMTransformVC.h"
 #import "SMLearn3DVC.h"
+#import "SMTenBoxesVC.h"
+#import "SMLearnCameraVC.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -27,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.datas = @[@"Hello World!", @"Two Triangle", @"Learn Shaders", @"Texture", @"Transform", @"Learn 3D"];
+    self.datas = @[@"Hello World!", @"Two Triangle", @"Learn Shaders", @"Texture", @"Transform", @"Learn 3D", @"Ten Boxes", @"Learn Camera"];
     [self.view addSubview:self.tableView];
 }
 
@@ -65,6 +67,12 @@
     } else if (indexPath.row == 5) {
         SMLearn3DVC *threeDvc = [[SMLearn3DVC alloc] init];
         [self.navigationController pushViewController:threeDvc animated:YES];
+    } else if (indexPath.row == 6) {
+        SMTenBoxesVC *tenBoxesvc = [[SMTenBoxesVC alloc] init];
+        [self.navigationController pushViewController:tenBoxesvc animated:YES];
+    } else if (indexPath.row == 7) {
+        SMLearnCameraVC *learnCameravc = [[SMLearnCameraVC alloc] init];
+        [self.navigationController pushViewController:learnCameravc animated:YES];
     }
 }
 

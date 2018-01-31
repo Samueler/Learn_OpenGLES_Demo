@@ -14,6 +14,10 @@
 		6679B67D1FFE42F20033F05F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6679B67B1FFE42F20033F05F /* LaunchScreen.storyboard */; };
 		6679B6801FFE42F20033F05F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6679B67F1FFE42F20033F05F /* main.m */; };
 		DB4D9AB5200DFBCD007C6259 /* kobe.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DB4D9AB4200DFBCD007C6259 /* kobe.jpg */; };
+		DB5DED952021957F009AA9C7 /* SMTenBoxesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5DED942021957F009AA9C7 /* SMTenBoxesVC.m */; };
+		DB5DED9820219591009AA9C7 /* SMLearnCameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5DED9720219591009AA9C7 /* SMLearnCameraVC.m */; };
+		DB5DED9A20219876009AA9C7 /* SMTenBoxes.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DB5DED9920219876009AA9C7 /* SMTenBoxes.vsh */; };
+		DB5DED9C20219886009AA9C7 /* SMTenBoxes.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DB5DED9B20219886009AA9C7 /* SMTenBoxes.fsh */; };
 		DB687E3920034892007A7D4E /* SMHelloWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = DB687E3820034892007A7D4E /* SMHelloWorld.m */; };
 		DB687E3C20034D26007A7D4E /* SMTwoTriangles.m in Sources */ = {isa = PBXBuildFile; fileRef = DB687E3B20034D26007A7D4E /* SMTwoTriangles.m */; };
 		DB687E3E20034F2A007A7D4E /* SMVertice.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DB687E3D20034F2A007A7D4E /* SMVertice.vsh */; };
@@ -50,6 +54,12 @@
 		6679B67F1FFE42F20033F05F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6679B6871FFE430F0033F05F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		DB4D9AB4200DFBCD007C6259 /* kobe.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kobe.jpg; sourceTree = "<group>"; };
+		DB5DED932021957F009AA9C7 /* SMTenBoxesVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMTenBoxesVC.h; sourceTree = "<group>"; };
+		DB5DED942021957F009AA9C7 /* SMTenBoxesVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMTenBoxesVC.m; sourceTree = "<group>"; };
+		DB5DED9620219591009AA9C7 /* SMLearnCameraVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMLearnCameraVC.h; sourceTree = "<group>"; };
+		DB5DED9720219591009AA9C7 /* SMLearnCameraVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMLearnCameraVC.m; sourceTree = "<group>"; };
+		DB5DED9920219876009AA9C7 /* SMTenBoxes.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMTenBoxes.vsh; sourceTree = "<group>"; };
+		DB5DED9B20219886009AA9C7 /* SMTenBoxes.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMTenBoxes.fsh; sourceTree = "<group>"; };
 		DB687E3720034892007A7D4E /* SMHelloWorld.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMHelloWorld.h; sourceTree = "<group>"; };
 		DB687E3820034892007A7D4E /* SMHelloWorld.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMHelloWorld.m; sourceTree = "<group>"; };
 		DB687E3A20034D26007A7D4E /* SMTwoTriangles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMTwoTriangles.h; sourceTree = "<group>"; };
@@ -123,6 +133,8 @@
 				DB7AEA58200DB077007BBE6B /* Texture */,
 				DB9364B42011C9660052E633 /* Transform */,
 				DBC210AB20131D79006F054A /* Learn3D */,
+				DB5DED9120219553009AA9C7 /* TenBoxes */,
+				DB5DED922021955F009AA9C7 /* LearnCamera */,
 				6679B6701FFE42F20033F05F /* AppDelegate.h */,
 				6679B6711FFE42F20033F05F /* AppDelegate.m */,
 				6679B6731FFE42F20033F05F /* ViewController.h */,
@@ -152,6 +164,24 @@
 				DB4D9AB4200DFBCD007C6259 /* kobe.jpg */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		DB5DED9120219553009AA9C7 /* TenBoxes */ = {
+			isa = PBXGroup;
+			children = (
+				DB5DED932021957F009AA9C7 /* SMTenBoxesVC.h */,
+				DB5DED942021957F009AA9C7 /* SMTenBoxesVC.m */,
+			);
+			path = TenBoxes;
+			sourceTree = "<group>";
+		};
+		DB5DED922021955F009AA9C7 /* LearnCamera */ = {
+			isa = PBXGroup;
+			children = (
+				DB5DED9620219591009AA9C7 /* SMLearnCameraVC.h */,
+				DB5DED9720219591009AA9C7 /* SMLearnCameraVC.m */,
+			);
+			path = LearnCamera;
 			sourceTree = "<group>";
 		};
 		DB7AEA54200DA725007BBE6B /* ShaderCompiler */ = {
@@ -198,6 +228,7 @@
 				DB7AEA5C200DD5AC007BBE6B /* SMTexture.vsh */,
 				DB9364B82011C9AE0052E633 /* SMTransform.vsh */,
 				DBC210AF20131EFF006F054A /* SMLearn3D.vsh */,
+				DB5DED9920219876009AA9C7 /* SMTenBoxes.vsh */,
 			);
 			path = VerticeShaders;
 			sourceTree = "<group>";
@@ -211,6 +242,7 @@
 				DB7AEA5E200DD5BD007BBE6B /* SMTexture.fsh */,
 				DB9364BA2011C9BE0052E633 /* SMTransform.fsh */,
 				DBC210B120131F18006F054A /* SMLearn3D.fsh */,
+				DB5DED9B20219886009AA9C7 /* SMTenBoxes.fsh */,
 			);
 			path = FragmentShaders;
 			sourceTree = "<group>";
@@ -321,10 +353,12 @@
 				DB687E3E20034F2A007A7D4E /* SMVertice.vsh in Resources */,
 				DBC210AA20131D68006F054A /* smile.png in Resources */,
 				DB9364BB2011C9BE0052E633 /* SMTransform.fsh in Resources */,
+				DB5DED9C20219886009AA9C7 /* SMTenBoxes.fsh in Resources */,
 				6679B6781FFE42F20033F05F /* Main.storyboard in Resources */,
 				DB82D58A200C524B00440D22 /* SMUniform.fsh in Resources */,
 				DB7AEA5F200DD5BD007BBE6B /* SMTexture.fsh in Resources */,
 				DB7AEA5D200DD5AC007BBE6B /* SMTexture.vsh in Resources */,
+				DB5DED9A20219876009AA9C7 /* SMTenBoxes.vsh in Resources */,
 				DB9364B92011C9AE0052E633 /* SMTransform.vsh in Resources */,
 				DB687E4020034F57007A7D4E /* SMFragment.fsh in Resources */,
 			);
@@ -339,6 +373,7 @@
 			files = (
 				6679B6751FFE42F20033F05F /* ViewController.m in Sources */,
 				DB7AEA5B200DB09B007BBE6B /* SMLearnTextureVC.m in Sources */,
+				DB5DED952021957F009AA9C7 /* SMTenBoxesVC.m in Sources */,
 				DB687E3920034892007A7D4E /* SMHelloWorld.m in Sources */,
 				DBA97BF420200D3B00151C6D /* GLESMath.c in Sources */,
 				DB82D592200C56FB00440D22 /* SMLearnShaderVC.m in Sources */,
@@ -348,6 +383,7 @@
 				6679B6721FFE42F20033F05F /* AppDelegate.m in Sources */,
 				DB9364B72011C9940052E633 /* SMTransformVC.m in Sources */,
 				DB687E3C20034D26007A7D4E /* SMTwoTriangles.m in Sources */,
+				DB5DED9820219591009AA9C7 /* SMLearnCameraVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
