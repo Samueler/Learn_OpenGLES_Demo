@@ -13,6 +13,11 @@
 		6679B67A1FFE42F20033F05F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6679B6791FFE42F20033F05F /* Assets.xcassets */; };
 		6679B67D1FFE42F20033F05F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6679B67B1FFE42F20033F05F /* LaunchScreen.storyboard */; };
 		6679B6801FFE42F20033F05F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6679B67F1FFE42F20033F05F /* main.m */; };
+		DB319EDD2022F0EC002EE227 /* SMLearnLightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB319EDC2022F0EC002EE227 /* SMLearnLightVC.m */; };
+		DB319EDF2022F1FB002EE227 /* SMLearnLight.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DB319EDE2022F1FB002EE227 /* SMLearnLight.vsh */; };
+		DB319EE12022F20B002EE227 /* SMLearnLight.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DB319EE02022F20B002EE227 /* SMLearnLight.fsh */; };
+		DB319EE3202300A1002EE227 /* SMLearnLightBox.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DB319EE2202300A1002EE227 /* SMLearnLightBox.vsh */; };
+		DB319EE5202300B1002EE227 /* SMLearnLightBox.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DB319EE4202300B1002EE227 /* SMLearnLightBox.fsh */; };
 		DB4D9AB5200DFBCD007C6259 /* kobe.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DB4D9AB4200DFBCD007C6259 /* kobe.jpg */; };
 		DB5DED952021957F009AA9C7 /* SMTenBoxesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5DED942021957F009AA9C7 /* SMTenBoxesVC.m */; };
 		DB5DED9820219591009AA9C7 /* SMLearnCameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5DED9720219591009AA9C7 /* SMLearnCameraVC.m */; };
@@ -53,6 +58,12 @@
 		6679B67E1FFE42F20033F05F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6679B67F1FFE42F20033F05F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6679B6871FFE430F0033F05F /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		DB319EDB2022F0EC002EE227 /* SMLearnLightVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMLearnLightVC.h; sourceTree = "<group>"; };
+		DB319EDC2022F0EC002EE227 /* SMLearnLightVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMLearnLightVC.m; sourceTree = "<group>"; };
+		DB319EDE2022F1FB002EE227 /* SMLearnLight.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMLearnLight.vsh; sourceTree = "<group>"; };
+		DB319EE02022F20B002EE227 /* SMLearnLight.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMLearnLight.fsh; sourceTree = "<group>"; };
+		DB319EE2202300A1002EE227 /* SMLearnLightBox.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMLearnLightBox.vsh; sourceTree = "<group>"; };
+		DB319EE4202300B1002EE227 /* SMLearnLightBox.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMLearnLightBox.fsh; sourceTree = "<group>"; };
 		DB4D9AB4200DFBCD007C6259 /* kobe.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = kobe.jpg; sourceTree = "<group>"; };
 		DB5DED932021957F009AA9C7 /* SMTenBoxesVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMTenBoxesVC.h; sourceTree = "<group>"; };
 		DB5DED942021957F009AA9C7 /* SMTenBoxesVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMTenBoxesVC.m; sourceTree = "<group>"; };
@@ -135,6 +146,7 @@
 				DBC210AB20131D79006F054A /* Learn3D */,
 				DB5DED9120219553009AA9C7 /* TenBoxes */,
 				DB5DED922021955F009AA9C7 /* LearnCamera */,
+				DB319EDA2022F0D0002EE227 /* LearnLight */,
 				6679B6701FFE42F20033F05F /* AppDelegate.h */,
 				6679B6711FFE42F20033F05F /* AppDelegate.m */,
 				6679B6731FFE42F20033F05F /* ViewController.h */,
@@ -154,6 +166,15 @@
 				6679B6871FFE430F0033F05F /* OpenGLES.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DB319EDA2022F0D0002EE227 /* LearnLight */ = {
+			isa = PBXGroup;
+			children = (
+				DB319EDB2022F0EC002EE227 /* SMLearnLightVC.h */,
+				DB319EDC2022F0EC002EE227 /* SMLearnLightVC.m */,
+			);
+			path = LearnLight;
 			sourceTree = "<group>";
 		};
 		DB4D9AB3200DFBBD007C6259 /* Resource */ = {
@@ -229,6 +250,8 @@
 				DB9364B82011C9AE0052E633 /* SMTransform.vsh */,
 				DBC210AF20131EFF006F054A /* SMLearn3D.vsh */,
 				DB5DED9920219876009AA9C7 /* SMTenBoxes.vsh */,
+				DB319EDE2022F1FB002EE227 /* SMLearnLight.vsh */,
+				DB319EE2202300A1002EE227 /* SMLearnLightBox.vsh */,
 			);
 			path = VerticeShaders;
 			sourceTree = "<group>";
@@ -243,6 +266,8 @@
 				DB9364BA2011C9BE0052E633 /* SMTransform.fsh */,
 				DBC210B120131F18006F054A /* SMLearn3D.fsh */,
 				DB5DED9B20219886009AA9C7 /* SMTenBoxes.fsh */,
+				DB319EE02022F20B002EE227 /* SMLearnLight.fsh */,
+				DB319EE4202300B1002EE227 /* SMLearnLightBox.fsh */,
 			);
 			path = FragmentShaders;
 			sourceTree = "<group>";
@@ -349,16 +374,20 @@
 				DBC210B220131F18006F054A /* SMLearn3D.fsh in Resources */,
 				DB4D9AB5200DFBCD007C6259 /* kobe.jpg in Resources */,
 				DBC210B020131EFF006F054A /* SMLearn3D.vsh in Resources */,
+				DB319EE12022F20B002EE227 /* SMLearnLight.fsh in Resources */,
 				DBC210A820131D5C006F054A /* box.jpg in Resources */,
 				DB687E3E20034F2A007A7D4E /* SMVertice.vsh in Resources */,
 				DBC210AA20131D68006F054A /* smile.png in Resources */,
 				DB9364BB2011C9BE0052E633 /* SMTransform.fsh in Resources */,
 				DB5DED9C20219886009AA9C7 /* SMTenBoxes.fsh in Resources */,
+				DB319EE5202300B1002EE227 /* SMLearnLightBox.fsh in Resources */,
 				6679B6781FFE42F20033F05F /* Main.storyboard in Resources */,
 				DB82D58A200C524B00440D22 /* SMUniform.fsh in Resources */,
 				DB7AEA5F200DD5BD007BBE6B /* SMTexture.fsh in Resources */,
 				DB7AEA5D200DD5AC007BBE6B /* SMTexture.vsh in Resources */,
 				DB5DED9A20219876009AA9C7 /* SMTenBoxes.vsh in Resources */,
+				DB319EDF2022F1FB002EE227 /* SMLearnLight.vsh in Resources */,
+				DB319EE3202300A1002EE227 /* SMLearnLightBox.vsh in Resources */,
 				DB9364B92011C9AE0052E633 /* SMTransform.vsh in Resources */,
 				DB687E4020034F57007A7D4E /* SMFragment.fsh in Resources */,
 			);
@@ -379,6 +408,7 @@
 				DB82D592200C56FB00440D22 /* SMLearnShaderVC.m in Sources */,
 				DB7AEA57200DA74B007BBE6B /* SMShaderCompiler.m in Sources */,
 				6679B6801FFE42F20033F05F /* main.m in Sources */,
+				DB319EDD2022F0EC002EE227 /* SMLearnLightVC.m in Sources */,
 				DBC210AE20131DAE006F054A /* SMLearn3DVC.m in Sources */,
 				6679B6721FFE42F20033F05F /* AppDelegate.m in Sources */,
 				DB9364B72011C9940052E633 /* SMTransformVC.m in Sources */,
