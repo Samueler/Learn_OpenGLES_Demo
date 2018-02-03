@@ -64,48 +64,92 @@
 
 - (void)setupVAOAndVBO {
     
+//    float vertices[] = {
+//        -0.5f, -0.5f, -0.5f,
+//        0.5f, -0.5f, -0.5f,
+//        0.5f,  0.5f, -0.5f,
+//        0.5f,  0.5f, -0.5f,
+//        -0.5f,  0.5f, -0.5f,
+//        -0.5f, -0.5f, -0.5f,
+//
+//        -0.5f, -0.5f,  0.5f,
+//        0.5f, -0.5f,  0.5f,
+//        0.5f,  0.5f,  0.5f,
+//        0.5f,  0.5f,  0.5f,
+//        -0.5f,  0.5f,  0.5f,
+//        -0.5f, -0.5f,  0.5f,
+//
+//        -0.5f,  0.5f,  0.5f,
+//        -0.5f,  0.5f, -0.5f,
+//        -0.5f, -0.5f, -0.5f,
+//        -0.5f, -0.5f, -0.5f,
+//        -0.5f, -0.5f,  0.5f,
+//        -0.5f,  0.5f,  0.5f,
+//
+//        0.5f,  0.5f,  0.5f,
+//        0.5f,  0.5f, -0.5f,
+//        0.5f, -0.5f, -0.5f,
+//        0.5f, -0.5f, -0.5f,
+//        0.5f, -0.5f,  0.5f,
+//        0.5f,  0.5f,  0.5f,
+//
+//        -0.5f, -0.5f, -0.5f,
+//        0.5f, -0.5f, -0.5f,
+//        0.5f, -0.5f,  0.5f,
+//        0.5f, -0.5f,  0.5f,
+//        -0.5f, -0.5f,  0.5f,
+//        -0.5f, -0.5f, -0.5f,
+//
+//        -0.5f,  0.5f, -0.5f,
+//        0.5f,  0.5f, -0.5f,
+//        0.5f,  0.5f,  0.5f,
+//        0.5f,  0.5f,  0.5f,
+//        -0.5f,  0.5f,  0.5f,
+//        -0.5f,  0.5f, -0.5f,
+//    };
+    
     float vertices[] = {
-        -0.5f, -0.5f, -0.5f,
-        0.5f, -0.5f, -0.5f,
-        0.5f,  0.5f, -0.5f,
-        0.5f,  0.5f, -0.5f,
-        -0.5f,  0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+        0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+        0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+        0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
         
-        -0.5f, -0.5f,  0.5f,
-        0.5f, -0.5f,  0.5f,
-        0.5f,  0.5f,  0.5f,
-        0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
-        -0.5f, -0.5f,  0.5f,
+        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+        0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+        0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+        0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
         
-        -0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
-        -0.5f, -0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
+        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+        -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+        -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+        -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+        -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
         
-        0.5f,  0.5f,  0.5f,
-        0.5f,  0.5f, -0.5f,
-        0.5f, -0.5f, -0.5f,
-        0.5f, -0.5f, -0.5f,
-        0.5f, -0.5f,  0.5f,
-        0.5f,  0.5f,  0.5f,
+        0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+        0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+        0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+        0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+        0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+        0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
         
-        -0.5f, -0.5f, -0.5f,
-        0.5f, -0.5f, -0.5f,
-        0.5f, -0.5f,  0.5f,
-        0.5f, -0.5f,  0.5f,
-        -0.5f, -0.5f,  0.5f,
-        -0.5f, -0.5f, -0.5f,
+        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+        0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+        0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+        0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+        -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
         
-        -0.5f,  0.5f, -0.5f,
-        0.5f,  0.5f, -0.5f,
-        0.5f,  0.5f,  0.5f,
-        0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f, -0.5f,
+        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+        0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+        0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+        0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+        -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+        -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
     };
     
     glGenVertexArrays(1, &_lightVAO);
@@ -115,7 +159,7 @@
     glBindBuffer(GL_ARRAY_BUFFER, _VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
     
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
     
     glGenVertexArrays(1, &_boxVAO);
@@ -123,8 +167,10 @@
     
     glBindBuffer(GL_ARRAY_BUFFER, _VBO);
     
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
+    glEnableVertexAttribArray(1);
 }
 
 - (void)startRender {
@@ -166,6 +212,8 @@
     
     glUniform3f(glGetUniformLocation(self.boxCompiler.program, "lightColor"), 1.0, 1.0, 1.0);
     glUniform3f(glGetUniformLocation(self.boxCompiler.program, "boxColor"), 1.0, 0.5, 0.3);
+    glUniform3f(glGetUniformLocation(self.boxCompiler.program, "lightPos"), 1.2, 1.0, 2.0);
+    glUniform3f(glGetUniformLocation(self.boxCompiler.program, "viewerPos"), 0.0, 0.0, 5.0);
     
     glBindVertexArray(_boxVAO);
     glDrawArrays(GL_TRIANGLES, 0, 36);
