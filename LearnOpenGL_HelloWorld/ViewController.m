@@ -16,6 +16,7 @@
 #import "SMTenBoxesVC.h"
 #import "SMLearnCameraVC.h"
 #import "SMLearnLightVC.h"
+#import "SMLearnFilterListVC.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -30,7 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.datas = @[@"Hello World!", @"Two Triangle", @"Learn Shaders", @"Texture", @"Transform", @"Learn 3D", @"Ten Boxes", @"Learn Camera", @"Learn Light"];
+    self.datas = @[@"Hello World!", @"Two Triangle", @"Learn Shaders", @"Texture", @"Transform", @"Learn 3D", @"Ten Boxes", @"Learn Camera", @"Learn Light", @"Learn Filter"];
     [self.view addSubview:self.tableView];
 }
 
@@ -77,6 +78,9 @@
     } else if (indexPath.row == 8) {
         SMLearnLightVC *learnLightvc = [[SMLearnLightVC alloc] init];
         [self.navigationController pushViewController:learnLightvc animated:YES];
+    } else if (indexPath.row == 9) {
+        SMLearnFilterListVC *learnFilterListvc = [[SMLearnFilterListVC alloc] init];
+        [self.navigationController pushViewController:learnFilterListvc animated:YES];
     }
 }
 

@@ -39,6 +39,13 @@
 		DB9364B92011C9AE0052E633 /* SMTransform.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DB9364B82011C9AE0052E633 /* SMTransform.vsh */; };
 		DB9364BB2011C9BE0052E633 /* SMTransform.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DB9364BA2011C9BE0052E633 /* SMTransform.fsh */; };
 		DBA97BF420200D3B00151C6D /* GLESMath.c in Sources */ = {isa = PBXBuildFile; fileRef = DBA97BF220200D3A00151C6D /* GLESMath.c */; };
+		DBAC60C220425823009C9B35 /* SMLearnFilterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAC60C120425823009C9B35 /* SMLearnFilterVC.m */; };
+		DBAC60C520425B0E009C9B35 /* SMLearnFilterListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAC60C420425B0E009C9B35 /* SMLearnFilterListVC.m */; };
+		DBAC60C920425D50009C9B35 /* SMLearnFilter.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DBAC60C820425D50009C9B35 /* SMLearnFilter.vsh */; };
+		DBAC60CB20425E73009C9B35 /* SMFilterGray.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DBAC60CA20425E73009C9B35 /* SMFilterGray.fsh */; };
+		DBAC60D0204264EC009C9B35 /* SMFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = DBAC60CF204264EC009C9B35 /* SMFilterView.m */; };
+		DBAC60D22042A628009C9B35 /* SMFilterMosaic.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DBAC60D12042A628009C9B35 /* SMFilterMosaic.fsh */; };
+		DBAC60D42042A9F3009C9B35 /* lyf.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DBAC60D32042A9F3009C9B35 /* lyf.jpg */; };
 		DBC210A820131D5C006F054A /* box.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DBC210A720131D5C006F054A /* box.jpg */; };
 		DBC210AA20131D68006F054A /* smile.png in Resources */ = {isa = PBXBuildFile; fileRef = DBC210A920131D68006F054A /* smile.png */; };
 		DBC210AE20131DAE006F054A /* SMLearn3DVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBC210AD20131DAE006F054A /* SMLearn3DVC.m */; };
@@ -94,6 +101,16 @@
 		DB9364BA2011C9BE0052E633 /* SMTransform.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMTransform.fsh; sourceTree = "<group>"; };
 		DBA97BF220200D3A00151C6D /* GLESMath.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GLESMath.c; sourceTree = "<group>"; };
 		DBA97BF320200D3B00151C6D /* GLESMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLESMath.h; sourceTree = "<group>"; };
+		DBAC60C020425823009C9B35 /* SMLearnFilterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMLearnFilterVC.h; sourceTree = "<group>"; };
+		DBAC60C120425823009C9B35 /* SMLearnFilterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMLearnFilterVC.m; sourceTree = "<group>"; };
+		DBAC60C320425B0E009C9B35 /* SMLearnFilterListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMLearnFilterListVC.h; sourceTree = "<group>"; };
+		DBAC60C420425B0E009C9B35 /* SMLearnFilterListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMLearnFilterListVC.m; sourceTree = "<group>"; };
+		DBAC60C820425D50009C9B35 /* SMLearnFilter.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMLearnFilter.vsh; sourceTree = "<group>"; };
+		DBAC60CA20425E73009C9B35 /* SMFilterGray.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMFilterGray.fsh; sourceTree = "<group>"; };
+		DBAC60CE204264EC009C9B35 /* SMFilterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMFilterView.h; sourceTree = "<group>"; };
+		DBAC60CF204264EC009C9B35 /* SMFilterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMFilterView.m; sourceTree = "<group>"; };
+		DBAC60D12042A628009C9B35 /* SMFilterMosaic.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMFilterMosaic.fsh; sourceTree = "<group>"; };
+		DBAC60D32042A9F3009C9B35 /* lyf.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = lyf.jpg; sourceTree = "<group>"; };
 		DBC210A720131D5C006F054A /* box.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = box.jpg; sourceTree = "<group>"; };
 		DBC210A920131D68006F054A /* smile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smile.png; sourceTree = "<group>"; };
 		DBC210AC20131DAE006F054A /* SMLearn3DVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMLearn3DVC.h; sourceTree = "<group>"; };
@@ -147,6 +164,7 @@
 				DB5DED9120219553009AA9C7 /* TenBoxes */,
 				DB5DED922021955F009AA9C7 /* LearnCamera */,
 				DB319EDA2022F0D0002EE227 /* LearnLight */,
+				DBAC60BF204257EB009C9B35 /* Learn Filter */,
 				6679B6701FFE42F20033F05F /* AppDelegate.h */,
 				6679B6711FFE42F20033F05F /* AppDelegate.m */,
 				6679B6731FFE42F20033F05F /* ViewController.h */,
@@ -180,6 +198,7 @@
 		DB4D9AB3200DFBBD007C6259 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				DBAC60D32042A9F3009C9B35 /* lyf.jpg */,
 				DBC210A920131D68006F054A /* smile.png */,
 				DBC210A720131D5C006F054A /* box.jpg */,
 				DB4D9AB4200DFBCD007C6259 /* kobe.jpg */,
@@ -290,6 +309,54 @@
 			path = Transform;
 			sourceTree = "<group>";
 		};
+		DBAC60BF204257EB009C9B35 /* Learn Filter */ = {
+			isa = PBXGroup;
+			children = (
+				DBAC60C620425C4C009C9B35 /* FilterVerticesShaders */,
+				DBAC60C720425C5D009C9B35 /* FilterFragmentShaders */,
+				DBAC60CD204264BF009C9B35 /* Views */,
+				DBAC60CC204264B2009C9B35 /* Controllers */,
+			);
+			path = "Learn Filter";
+			sourceTree = "<group>";
+		};
+		DBAC60C620425C4C009C9B35 /* FilterVerticesShaders */ = {
+			isa = PBXGroup;
+			children = (
+				DBAC60C820425D50009C9B35 /* SMLearnFilter.vsh */,
+			);
+			path = FilterVerticesShaders;
+			sourceTree = "<group>";
+		};
+		DBAC60C720425C5D009C9B35 /* FilterFragmentShaders */ = {
+			isa = PBXGroup;
+			children = (
+				DBAC60CA20425E73009C9B35 /* SMFilterGray.fsh */,
+				DBAC60D12042A628009C9B35 /* SMFilterMosaic.fsh */,
+			);
+			path = FilterFragmentShaders;
+			sourceTree = "<group>";
+		};
+		DBAC60CC204264B2009C9B35 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DBAC60C320425B0E009C9B35 /* SMLearnFilterListVC.h */,
+				DBAC60C420425B0E009C9B35 /* SMLearnFilterListVC.m */,
+				DBAC60C020425823009C9B35 /* SMLearnFilterVC.h */,
+				DBAC60C120425823009C9B35 /* SMLearnFilterVC.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		DBAC60CD204264BF009C9B35 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DBAC60CE204264EC009C9B35 /* SMFilterView.h */,
+				DBAC60CF204264EC009C9B35 /* SMFilterView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		DBC210AB20131D79006F054A /* Learn3D */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6679B67D1FFE42F20033F05F /* LaunchScreen.storyboard in Resources */,
+				DBAC60D22042A628009C9B35 /* SMFilterMosaic.fsh in Resources */,
 				DB82D58E200C55D100440D22 /* SMLearnShader.fsh in Resources */,
 				DB82D58C200C55C100440D22 /* SMLearnShader.vsh in Resources */,
 				6679B67A1FFE42F20033F05F /* Assets.xcassets in Resources */,
@@ -375,10 +443,13 @@
 				DB4D9AB5200DFBCD007C6259 /* kobe.jpg in Resources */,
 				DBC210B020131EFF006F054A /* SMLearn3D.vsh in Resources */,
 				DB319EE12022F20B002EE227 /* SMLearnLight.fsh in Resources */,
+				DBAC60C920425D50009C9B35 /* SMLearnFilter.vsh in Resources */,
+				DBAC60CB20425E73009C9B35 /* SMFilterGray.fsh in Resources */,
 				DBC210A820131D5C006F054A /* box.jpg in Resources */,
 				DB687E3E20034F2A007A7D4E /* SMVertice.vsh in Resources */,
 				DBC210AA20131D68006F054A /* smile.png in Resources */,
 				DB9364BB2011C9BE0052E633 /* SMTransform.fsh in Resources */,
+				DBAC60D42042A9F3009C9B35 /* lyf.jpg in Resources */,
 				DB5DED9C20219886009AA9C7 /* SMTenBoxes.fsh in Resources */,
 				DB319EE5202300B1002EE227 /* SMLearnLightBox.fsh in Resources */,
 				6679B6781FFE42F20033F05F /* Main.storyboard in Resources */,
@@ -401,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6679B6751FFE42F20033F05F /* ViewController.m in Sources */,
+				DBAC60D0204264EC009C9B35 /* SMFilterView.m in Sources */,
 				DB7AEA5B200DB09B007BBE6B /* SMLearnTextureVC.m in Sources */,
 				DB5DED952021957F009AA9C7 /* SMTenBoxesVC.m in Sources */,
 				DB687E3920034892007A7D4E /* SMHelloWorld.m in Sources */,
@@ -411,7 +483,9 @@
 				DB319EDD2022F0EC002EE227 /* SMLearnLightVC.m in Sources */,
 				DBC210AE20131DAE006F054A /* SMLearn3DVC.m in Sources */,
 				6679B6721FFE42F20033F05F /* AppDelegate.m in Sources */,
+				DBAC60C220425823009C9B35 /* SMLearnFilterVC.m in Sources */,
 				DB9364B72011C9940052E633 /* SMTransformVC.m in Sources */,
+				DBAC60C520425B0E009C9B35 /* SMLearnFilterListVC.m in Sources */,
 				DB687E3C20034D26007A7D4E /* SMTwoTriangles.m in Sources */,
 				DB5DED9820219591009AA9C7 /* SMLearnCameraVC.m in Sources */,
 			);
