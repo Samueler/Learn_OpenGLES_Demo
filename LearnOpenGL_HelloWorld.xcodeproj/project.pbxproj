@@ -23,6 +23,7 @@
 		DB5DED9820219591009AA9C7 /* SMLearnCameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB5DED9720219591009AA9C7 /* SMLearnCameraVC.m */; };
 		DB5DED9A20219876009AA9C7 /* SMTenBoxes.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DB5DED9920219876009AA9C7 /* SMTenBoxes.vsh */; };
 		DB5DED9C20219886009AA9C7 /* SMTenBoxes.fsh in Resources */ = {isa = PBXBuildFile; fileRef = DB5DED9B20219886009AA9C7 /* SMTenBoxes.fsh */; };
+		DB6689F92050C7E600216315 /* SMCameraVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB6689F82050C7E600216315 /* SMCameraVC.m */; };
 		DB687E3920034892007A7D4E /* SMHelloWorld.m in Sources */ = {isa = PBXBuildFile; fileRef = DB687E3820034892007A7D4E /* SMHelloWorld.m */; };
 		DB687E3C20034D26007A7D4E /* SMTwoTriangles.m in Sources */ = {isa = PBXBuildFile; fileRef = DB687E3B20034D26007A7D4E /* SMTwoTriangles.m */; };
 		DB687E3E20034F2A007A7D4E /* SMVertice.vsh in Resources */ = {isa = PBXBuildFile; fileRef = DB687E3D20034F2A007A7D4E /* SMVertice.vsh */; };
@@ -78,6 +79,8 @@
 		DB5DED9720219591009AA9C7 /* SMLearnCameraVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMLearnCameraVC.m; sourceTree = "<group>"; };
 		DB5DED9920219876009AA9C7 /* SMTenBoxes.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMTenBoxes.vsh; sourceTree = "<group>"; };
 		DB5DED9B20219886009AA9C7 /* SMTenBoxes.fsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = SMTenBoxes.fsh; sourceTree = "<group>"; };
+		DB6689F72050C7E600216315 /* SMCameraVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMCameraVC.h; sourceTree = "<group>"; };
+		DB6689F82050C7E600216315 /* SMCameraVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMCameraVC.m; sourceTree = "<group>"; };
 		DB687E3720034892007A7D4E /* SMHelloWorld.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMHelloWorld.h; sourceTree = "<group>"; };
 		DB687E3820034892007A7D4E /* SMHelloWorld.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SMHelloWorld.m; sourceTree = "<group>"; };
 		DB687E3A20034D26007A7D4E /* SMTwoTriangles.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SMTwoTriangles.h; sourceTree = "<group>"; };
@@ -165,6 +168,7 @@
 				DB5DED922021955F009AA9C7 /* LearnCamera */,
 				DB319EDA2022F0D0002EE227 /* LearnLight */,
 				DBAC60BF204257EB009C9B35 /* Learn Filter */,
+				DB6689F62050C7BD00216315 /* Camera */,
 				6679B6701FFE42F20033F05F /* AppDelegate.h */,
 				6679B6711FFE42F20033F05F /* AppDelegate.m */,
 				6679B6731FFE42F20033F05F /* ViewController.h */,
@@ -222,6 +226,15 @@
 				DB5DED9720219591009AA9C7 /* SMLearnCameraVC.m */,
 			);
 			path = LearnCamera;
+			sourceTree = "<group>";
+		};
+		DB6689F62050C7BD00216315 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				DB6689F72050C7E600216315 /* SMCameraVC.h */,
+				DB6689F82050C7E600216315 /* SMCameraVC.m */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 		DB7AEA54200DA725007BBE6B /* ShaderCompiler */ = {
@@ -480,6 +493,7 @@
 				DB82D592200C56FB00440D22 /* SMLearnShaderVC.m in Sources */,
 				DB7AEA57200DA74B007BBE6B /* SMShaderCompiler.m in Sources */,
 				6679B6801FFE42F20033F05F /* main.m in Sources */,
+				DB6689F92050C7E600216315 /* SMCameraVC.m in Sources */,
 				DB319EDD2022F0EC002EE227 /* SMLearnLightVC.m in Sources */,
 				DBC210AE20131DAE006F054A /* SMLearn3DVC.m in Sources */,
 				6679B6721FFE42F20033F05F /* AppDelegate.m in Sources */,

@@ -17,12 +17,14 @@
 #import "SMLearnCameraVC.h"
 #import "SMLearnLightVC.h"
 #import "SMLearnFilterListVC.h"
+#import "SMCameraVC.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) NSArray *datas;
+@property (nonatomic, strong) NSArray *vcNames;
 
 @end
 
@@ -31,7 +33,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.datas = @[@"Hello World!", @"Two Triangle", @"Learn Shaders", @"Texture", @"Transform", @"Learn 3D", @"Ten Boxes", @"Learn Camera", @"Learn Light", @"Learn Filter"];
+    self.datas = @[@"Hello World!", @"Two Triangle", @"Learn Shaders", @"Texture", @"Transform", @"Learn 3D", @"Ten Boxes", @"Learn Camera", @"Learn Light", @"Learn Filter", @"SMCamera"];
+    self.vcNames = @[@"SMHelloWorld", @"SMTwoTriangles", @"SMLearnShaderVC", @"SMLearnTextureVC", @"SMTransformVC", @"SMLearn3DVC", @"SMTenBoxesVC", @"SMLearnCameraVC", @"SMLearnLightVC", @"SMLearnFilterListVC", @"SMCameraVC"];
     [self.view addSubview:self.tableView];
 }
 
@@ -51,37 +54,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        SMHelloWorld *helloWorldvc = [[SMHelloWorld alloc] init];
-        [self.navigationController pushViewController:helloWorldvc animated:YES];
-    } else if (indexPath.row == 1) {
-        SMTwoTriangles *twoTrianglesvc = [[SMTwoTriangles alloc] init];
-        [self.navigationController pushViewController:twoTrianglesvc animated:YES];
-    } else if (indexPath.row == 2) {
-        SMLearnShaderVC *learnShadervc = [[SMLearnShaderVC alloc] init];
-        [self.navigationController pushViewController:learnShadervc animated:YES];
-    } else if (indexPath.row == 3) {
-        SMLearnTextureVC *texturevc = [[SMLearnTextureVC alloc] init];
-        [self.navigationController pushViewController:texturevc animated:YES];
-    } else if (indexPath.row == 4) {
-        SMTransformVC *transformvc = [[SMTransformVC alloc] init];
-        [self.navigationController pushViewController:transformvc animated:YES];
-    } else if (indexPath.row == 5) {
-        SMLearn3DVC *threeDvc = [[SMLearn3DVC alloc] init];
-        [self.navigationController pushViewController:threeDvc animated:YES];
-    } else if (indexPath.row == 6) {
-        SMTenBoxesVC *tenBoxesvc = [[SMTenBoxesVC alloc] init];
-        [self.navigationController pushViewController:tenBoxesvc animated:YES];
-    } else if (indexPath.row == 7) {
-        SMLearnCameraVC *learnCameravc = [[SMLearnCameraVC alloc] init];
-        [self.navigationController pushViewController:learnCameravc animated:YES];
-    } else if (indexPath.row == 8) {
-        SMLearnLightVC *learnLightvc = [[SMLearnLightVC alloc] init];
-        [self.navigationController pushViewController:learnLightvc animated:YES];
-    } else if (indexPath.row == 9) {
-        SMLearnFilterListVC *learnFilterListvc = [[SMLearnFilterListVC alloc] init];
-        [self.navigationController pushViewController:learnFilterListvc animated:YES];
-    }
+    
+    Class destionClass = NSClassFromString(self.vcNames[indexPath.row]);
+    UIViewController *destionvc = [[destionClass alloc] init];
+    [self.navigationController pushViewController:destionvc animated:YES];
 }
 
 #pragma mark - Lazy Load

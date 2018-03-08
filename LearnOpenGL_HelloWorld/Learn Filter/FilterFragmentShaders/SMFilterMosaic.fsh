@@ -7,7 +7,7 @@ out vec4 fragColor;
 
 uniform sampler2D ourTexture;
 
-const vec2 texSize = vec2(500.0, 500.0);
+const vec2 texSize = vec2(1024.0, 1024.0);
 const vec2 mosaicSize = vec2(8.0, 8.0);
 
 void main() {
