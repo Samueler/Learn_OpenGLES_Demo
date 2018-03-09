@@ -27,7 +27,6 @@
     [super viewDidLoad];
     
     [self setupCameraView];
-    
     [self setupCaptureSession];
 }
 
@@ -41,7 +40,6 @@
 
 - (void)setupCameraView {
     [self.view addSubview:self.cameraView];
-    self.cameraView.frame = self.view.bounds;
 }
 
 - (void)setupCaptureSession {
@@ -49,7 +47,7 @@
     
     [self.captureSession beginConfiguration];
     
-    [self.captureSession setSessionPreset:AVCaptureSessionPresetHigh];
+    [self.captureSession setSessionPreset:AVCaptureSessionPreset640x480];
     
     AVCaptureDevice *cameraDevice = nil;
     NSArray *captureDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
@@ -73,8 +71,8 @@
     _videoOutput = [[AVCaptureVideoDataOutput alloc] init];
     [_videoOutput setAlwaysDiscardsLateVideoFrames:NO];
     [_videoOutput setSampleBufferDelegate:self queue:dispatch_get_global_queue(0, 0)];
-    // luma=[16,235] chroma=[16,240]
-    [_videoOutput setVideoSettings:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange] forKey:(id)kCVPixelBufferPixelFormatTypeKey]];
+    // luma=[0,255] chroma=[1,255]
+    [_videoOutput setVideoSettings:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_420YpCbCr8BiPlanarFullRange] forKey:(id)kCVPixelBufferPixelFormatTypeKey]];
     
     if ([self.captureSession canAddOutput:_videoOutput]) {
         [self.captureSession addOutput:_videoOutput];
@@ -97,7 +95,7 @@
 
 - (SMCameraView *)cameraView {
     if (!_cameraView) {
-        _cameraView = [[SMCameraView alloc] init];
+        _cameraView = [[SMCameraView alloc] initWithFrame:self.view.bounds];
     }
     return _cameraView;
 }

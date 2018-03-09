@@ -14,7 +14,7 @@
     NSString *_filterName;
     CAEAGLLayer *_eaglLayer;
     EAGLContext *_context;
-    GLuint _renderBuffer, _frameBuffer,_vShader, _fShader, _texture, _VAO, _VBO, _EBO;
+    GLuint _renderBuffer, _frameBuffer, _texture, _VAO, _VBO, _EBO;
     SMShaderCompiler *_compiler;
 }
 

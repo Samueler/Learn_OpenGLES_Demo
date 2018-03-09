@@ -9,93 +9,129 @@
 #import "SMCameraView.h"
 #import <OpenGLES/ES3/gl.h>
 #import "SMShaderCompiler.h"
+#import <AVFoundation/AVFoundation.h>
 
-@interface SMCameraView()
-
-@property (nonatomic, strong) SMShaderCompiler *compiler;
-
-@end
+// BT.601 full range (ref: http://www.equasys.de/colorconversion.html)
+const float kColorConversion601FullRange[] = {
+    1.0,    1.0,    1.0,
+    0.0,    -0.343, 1.765,
+    1.4,    -0.711, 0.0,
+};
 
 @implementation SMCameraView {
     CAEAGLLayer *_eaglLayer;
     EAGLContext *_context;
-    GLuint _colorBuffer, _frameBuffer;
+    SMShaderCompiler *_compiler;
+    GLuint _renderBuffer, _frameBuffer, _VAO, _VBO, _EBO;
+    GLint _frameWidth, _frameHeight;
     
-    CVOpenGLESTextureRef _lumaTexture; // Y
-    CVOpenGLESTextureRef _chromaTexture; // UV
+    CVOpenGLESTextureRef _lumaTexture;
+    CVOpenGLESTextureRef _chromaTexture;
     CVOpenGLESTextureCacheRef _videoTextureCache;
 }
 
 #pragma mark - Initialization Functions
 
-- (instancetype)init {
-    if (self = [super init]) {
-        
-        [self setupLayer];
-        [self setupContext];
-        [self clearColorFrameBuffer];
-        [self setupColorFrameBuffer];
-        [self setupShaders];
+- (instancetype)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
+        [self setupInitializations];
     }
     return self;
 }
 
-#pragma mark - Public Functions
-
-- (void)displayPixelBuffer:(CVPixelBufferRef)pixelBuffer {
-    
-    if (pixelBuffer != NULL && _videoTextureCache) {
-        
-        [self clearTextures];
-     
-        GLsizei frameWidth = (GLsizei)CVPixelBufferGetWidth(pixelBuffer);
-        GLsizei frameHeight = (GLsizei)CVPixelBufferGetWidth(pixelBuffer);
-        
-        // 通过CFTypeRef 可以知道使用哪种格式的颜色矩阵转换 YUV->RGB 因此处我们已经固定了格式 所以便不用其进行矩阵类型判断
-//        CFTypeRef colorAttachement = CVBufferGetAttachment(pixelBuffer, kCVImageBufferYCbCrMatrixKey, NULL);
-        
-        // GL_TEXTURE0
-        glActiveTexture(GL_TEXTURE0);
-        CVReturn lumaTextureResult = CVOpenGLESTextureCacheCreateTextureFromImage(kCFAllocatorDefault, _videoTextureCache, pixelBuffer, NULL, GL_TEXTURE_2D, GL_LUMINANCE, frameWidth, frameHeight, GL_LUMINANCE, GL_UNSIGNED_BYTE, 0, &_lumaTexture);
-        
-        if (lumaTextureResult) {
-            NSLog(@"CVOpenGLESTextureCacheCreateTextureFromImage Error For LumaTexture:%d", lumaTextureResult);
-        }
-        
-        glBindSampler(CVOpenGLESTextureGetTarget(_lumaTexture), CVOpenGLESTextureGetName(_lumaTexture));
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        
-        // GL_TEXTURE1
-        
-        glActiveTexture(GL_TEXTURE1);
-        CVReturn chromaTextureResult = CVOpenGLESTextureCacheCreateTextureFromImage(kCFAllocatorDefault, _videoTextureCache, pixelBuffer, NULL, GL_TEXTURE_2D, GL_LUMINANCE, frameWidth, frameHeight, GL_LUMINANCE, GL_UNSIGNED_BYTE, 1, &_chromaTexture);
-        
-        if (chromaTextureResult) {
-            NSLog(@"CVOpenGLESTextureCacheCreateTextureFromImage Error For chromaTexture:%d", chromaTextureResult);
-        }
-        
-        glBindSampler(CVOpenGLESTextureGetTarget(_chromaTexture), CVOpenGLESTextureGetName(_chromaTexture));
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-        
-        glBindFramebuffer(GL_FRAMEBUFFER, _frameBuffer);
-        
-        [self startRender];
-    }
-}
-
-#pragma mark - Override Functions
+#pragma mark - Override Funcrtions
 
 + (Class)layerClass {
     return [CAEAGLLayer class];
 }
 
+#pragma mark - Public Functions
+
+- (void)displayPixelBuffer:(CVPixelBufferRef)pixelBuffer {
+    if (pixelBuffer != NULL) {
+        if (!_videoTextureCache) {
+            CVReturn err = CVOpenGLESTextureCacheCreate(kCFAllocatorDefault, NULL, _context, NULL, &_videoTextureCache);
+            if (err != noErr) {
+                NSLog(@"Error at CVOpenGLESTextureCacheCreate %d", err);
+                return;
+            }
+        }
+        
+        int frameWidth = (int)CVPixelBufferGetWidth(pixelBuffer);
+        int frameHeight = (int)CVPixelBufferGetHeight(pixelBuffer);
+        
+        if ([EAGLContext currentContext] != _context) {
+            [EAGLContext setCurrentContext:_context];
+        }
+        
+        [self cleanUpTextures];
+        
+        glActiveTexture(GL_TEXTURE0);
+        CVReturn lumaTextureResult = CVOpenGLESTextureCacheCreateTextureFromImage(kCFAllocatorDefault,
+                                                           _videoTextureCache,
+                                                           pixelBuffer,
+                                                           NULL,
+                                                           GL_TEXTURE_2D,
+                                                           GL_LUMINANCE,
+                                                           frameWidth,
+                                                           frameHeight,
+                                                           GL_LUMINANCE,
+                                                           GL_UNSIGNED_BYTE,
+                                                           0,
+                                                           &_lumaTexture);
+        if (lumaTextureResult) {
+            NSLog(@"Error at CVOpenGLESTextureCacheCreateTextureFromImage %d", lumaTextureResult);
+        }
+        
+        glBindTexture(CVOpenGLESTextureGetTarget(_lumaTexture), CVOpenGLESTextureGetName(_lumaTexture));
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        
+        // UV-plane.
+        glActiveTexture(GL_TEXTURE1);
+        CVReturn chromaTextureResult = CVOpenGLESTextureCacheCreateTextureFromImage(kCFAllocatorDefault,
+                                                           _videoTextureCache,
+                                                           pixelBuffer,
+                                                           NULL,
+                                                           GL_TEXTURE_2D,
+                                                           GL_LUMINANCE_ALPHA,
+                                                           frameWidth / 2,
+                                                           frameHeight / 2,
+                                                           GL_LUMINANCE_ALPHA,
+                                                           GL_UNSIGNED_BYTE,
+                                                           1,
+                                                           &_chromaTexture);
+        if (chromaTextureResult) {
+            NSLog(@"Error at CVOpenGLESTextureCacheCreateTextureFromImage %d", chromaTextureResult);
+        }
+        
+        glBindTexture(CVOpenGLESTextureGetTarget(_chromaTexture), CVOpenGLESTextureGetName(_chromaTexture));
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+        
+        glBindFramebuffer(GL_FRAMEBUFFER, _frameBuffer);
+    }
+    
+    [self startRender];
+}
+
 #pragma mark - Private Functions
+
+- (void)setupInitializations {
+    
+    [self setupLayer];
+    [self setupContext];
+    [self clearRenderFrameBuffers];
+    [self setupRenderFrameBuffers];
+    [self setupViewPortWidthHeight];
+    [self setupShaders];
+    [self setupObjects];
+    [self startRender];
+}
 
 - (void)setupLayer {
     _eaglLayer = (CAEAGLLayer *)self.layer;
@@ -107,35 +143,100 @@
     [EAGLContext setCurrentContext:_context];
 }
 
-- (void)clearColorFrameBuffer {
-    if (_colorBuffer) {
-        glDeleteRenderbuffers(1, &_colorBuffer);
-        _colorBuffer = 0;
+- (void)clearRenderFrameBuffers {
+    if (_renderBuffer) {
+        glDeleteBuffers(1, &_renderBuffer);
+        _renderBuffer = 0;
     }
     
     if (_frameBuffer) {
-        glDeleteRenderbuffers(1, &_frameBuffer);
+        glDeleteBuffers(1, &_frameBuffer);
         _frameBuffer = 0;
     }
 }
 
-- (void)setupColorFrameBuffer {
-    glGenFramebuffers(1, &_frameBuffer);
-    glBindFramebuffer(GL_FRAMEBUFFER, _frameBuffer);
+- (void)setupRenderFrameBuffers {
+    if (!_renderBuffer) {
+        glGenRenderbuffers(1, &_renderBuffer);
+        glBindRenderbuffer(GL_RENDERBUFFER, _renderBuffer);
+    }
     
-    glGenRenderbuffers(1, &_colorBuffer);
-    glBindRenderbuffer(GL_RENDERBUFFER, _colorBuffer);
+    if (!_frameBuffer) {
+        glGenFramebuffers(1, &_frameBuffer);
+        glBindFramebuffer(GL_FRAMEBUFFER, _frameBuffer);
+    }
     
-    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, _colorBuffer);
-    
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, _renderBuffer);
     [_context renderbufferStorage:GL_RENDERBUFFER fromDrawable:_eaglLayer];
 }
 
-- (void)setupShaders {
-    self.compiler = [[SMShaderCompiler alloc] initShaderCompilerWithVertex:@"SMCamera.fsh" fragment:@"SMCamera.vsh"];
+- (void)setupViewPortWidthHeight {
+    glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &_frameWidth);
+    glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &_frameHeight);
+    glViewport(0, 0, _frameWidth, _frameHeight);
 }
 
-- (void)clearTextures {
+- (void)setupShaders {
+    _compiler = [[SMShaderCompiler alloc] initShaderCompilerWithVertex:@"SMCamera.vsh" fragment:@"SMCamera.fsh"];
+}
+
+- (void)setupObjects {
+    
+    float vertices[] = {
+         1.0,  1.0, 1.0, 1.0,
+         1.0, -1.0, 1.0, 0.0,
+        -1.0, -1.0, 0.0, 0.0,
+        -1.0,  1.0, 0.0, 1.0
+    };
+    
+    GLuint indices[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
+    
+    glGenVertexArrays(1, &_VAO);
+    glBindVertexArray(_VAO);
+    
+    glGenBuffers(1, &_VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, _VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    
+    glGenBuffers(1, &_EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void *)0);
+    glEnableVertexAttribArray(0);
+    
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void *)(2 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+}
+
+- (void)startRender {
+    
+    glClearColor(1.0, 1.0, 1.0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    
+    glBindVertexArray(_VAO);
+    [_compiler userProgram];
+    
+    glUniform1i(glGetAttribLocation(_compiler.program, "samplerY"), 0);
+    glUniform1i(glGetAttribLocation(_compiler.program, "samplerUV"), 1);
+    glUniformMatrix3fv(glGetAttribLocation(_compiler.program, "YUVToRGBColorMatrix"), 1, GL_FALSE, kColorConversion601FullRange);
+    
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    
+    
+    [_context presentRenderbuffer:GL_RENDERER];
+}
+
+- (void)clearObjects {
+    glDeleteBuffers(1, &_VBO);
+    glDeleteBuffers(1, &_EBO);
+    glDeleteVertexArrays(1, &_VAO);
+}
+
+- (void)cleanUpTextures {
     if (_lumaTexture) {
         CFRelease(_lumaTexture);
         _lumaTexture = NULL;
@@ -149,20 +250,11 @@
     CVOpenGLESTextureCacheFlush(_videoTextureCache, 0);
 }
 
-- (void)startRender {
-    
-    
-    glClear(GL_COLOR_BUFFER_BIT);
-    glClearColor(0.0, 0.0, 0.0, 1.0);
-    glViewport(0, 0, self.frame.size.width, self.frame.size.height);
-    
-    
-    
-    
-    
-    
-    [_context presentRenderbuffer:GL_RENDERBUFFER];
+- (void)dealloc {
+    NSLog(@"SMCameraView Dealloc!!");
+    [self clearObjects];
+    [self cleanUpTextures];
+    [self clearRenderFrameBuffers];
 }
-
 
 @end

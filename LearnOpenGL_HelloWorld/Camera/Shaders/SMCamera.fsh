@@ -2,21 +2,19 @@
 
 precision mediump float;
 
-in vec2 ourTexCoor;
+in vec2 ourTexCoord;
+out vec4 fragColor;
 
-uniform sampler2D samplerY;
-uniform sampler2D samplerUV;
-uniform mat3 yuvConversationColorMatrix;
+uniform sampler2D samplerY, samplerUV;
+uniform mat3 YUVToRGBColorMatrix;
 
 void  main() {
+    mediump vec3 yuv;
+    lowp vec3 rgb;
     
-    mediump vec3 ourYUV;
-    lowp vec3 ourRGB;
-    
-    ourYUV.x = texture2D(samplerY, ourTexCoor).r;
-    ourYUV.yz = texture2D(samplerUV, ourTexCoor).gb;
-    
-    ourRGB = yuvConversationColorMatrix * ourYUV;
-    
-    gl_FragColor = vec4(ourRGB, 1.0);
+    yuv.x = (texture(samplerY, ourTexCoord).r);
+    yuv.yz = (texture(samplerUV, ourTexCoord).ra - vec2(0.5, 0.5));
+    rgb = YUVToRGBColorMatrix * yuv;
+//    fragColor = vec4(rgb,1);
+    fragColor = vec4(0.5, 0.2, 0.7, 1.0);
 }
