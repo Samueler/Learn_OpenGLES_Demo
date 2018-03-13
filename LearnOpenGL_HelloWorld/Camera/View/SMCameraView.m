@@ -10,8 +10,8 @@
 #import <OpenGLES/ES3/gl.h>
 #import "SMShaderCompiler.h"
 #import <AVFoundation/AVFoundation.h>
+#import "GLESMath.h"
 
-// BT.601 full range (ref: http://www.equasys.de/colorconversion.html)
 const float kColorConversion601FullRange[] = {
     1.0,    1.0,    1.0,
     0.0,    -0.343, 1.765,
@@ -49,20 +49,20 @@ const float kColorConversion601FullRange[] = {
 
 - (void)displayPixelBuffer:(CVPixelBufferRef)pixelBuffer {
     if (pixelBuffer != NULL) {
-        if (!_videoTextureCache) {
-            CVReturn err = CVOpenGLESTextureCacheCreate(kCFAllocatorDefault, NULL, _context, NULL, &_videoTextureCache);
-            if (err != noErr) {
-                NSLog(@"Error at CVOpenGLESTextureCacheCreate %d", err);
-                return;
-            }
-        }
         
-        int frameWidth = (int)CVPixelBufferGetWidth(pixelBuffer);
-        int frameHeight = (int)CVPixelBufferGetHeight(pixelBuffer);
+        if (_videoTextureCache == NULL) {
+            NSLog(@"No Video Texture Cache!!");
+            return;
+        }
         
         if ([EAGLContext currentContext] != _context) {
             [EAGLContext setCurrentContext:_context];
         }
+        
+        [self cleanUpTextures];
+        
+        int frameWidth = (int)CVPixelBufferGetWidth(pixelBuffer);
+        int frameHeight = (int)CVPixelBufferGetHeight(pixelBuffer);
         
         [self cleanUpTextures];
         
@@ -115,7 +115,6 @@ const float kColorConversion601FullRange[] = {
         
         glBindFramebuffer(GL_FRAMEBUFFER, _frameBuffer);
     }
-    
     [self startRender];
 }
 
@@ -130,12 +129,12 @@ const float kColorConversion601FullRange[] = {
     [self setupViewPortWidthHeight];
     [self setupShaders];
     [self setupObjects];
-    [self startRender];
 }
 
 - (void)setupLayer {
     _eaglLayer = (CAEAGLLayer *)self.layer;
-    _eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO],kEAGLDrawablePropertyRetainedBacking,kEAGLColorFormatRGBA8,kEAGLDrawablePropertyColorFormat, nil];
+    _eaglLayer.drawableProperties = @{kEAGLDrawablePropertyRetainedBacking :[NSNumber numberWithBool:NO],
+                                       kEAGLDrawablePropertyColorFormat : kEAGLColorFormatRGBA8};
 }
 
 - (void)setupContext {
@@ -178,15 +177,29 @@ const float kColorConversion601FullRange[] = {
 
 - (void)setupShaders {
     _compiler = [[SMShaderCompiler alloc] initShaderCompilerWithVertex:@"SMCamera.vsh" fragment:@"SMCamera.fsh"];
+    [_compiler userProgram];
+    
+    glUniform1i(glGetUniformLocation(_compiler.program, "SamplerY"), 0);
+    glUniform1i(glGetUniformLocation(_compiler.program, "SamplerUV"), 1);
+    glUniformMatrix3fv(glGetUniformLocation(_compiler.program, "colorConversionMatrix"), 1, GL_FALSE, kColorConversion601FullRange);
+    
+    if (!_videoTextureCache) {
+        CVReturn err = CVOpenGLESTextureCacheCreate(kCFAllocatorDefault, NULL, _context, NULL, &_videoTextureCache);
+        if (err != noErr) {
+            NSLog(@"Error at CVOpenGLESTextureCacheCreate %d", err);
+            return;
+        }
+    }
+    
 }
 
 - (void)setupObjects {
     
     float vertices[] = {
-         1.0,  1.0, 1.0, 1.0,
-         1.0, -1.0, 1.0, 0.0,
-        -1.0, -1.0, 0.0, 0.0,
-        -1.0,  1.0, 0.0, 1.0
+         1.0,  1.0, 0.0, 1.0, 1.0,
+         1.0, -1.0, 0.0, 1.0, 0.0,
+        -1.0, -1.0, 0.0, 0.0, 0.0,
+        -1.0,  1.0, 0.0, 0.0, 1.0
     };
     
     GLuint indices[] = {
@@ -205,29 +218,30 @@ const float kColorConversion601FullRange[] = {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
     
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void *)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)0);
     glEnableVertexAttribArray(0);
     
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void *)(2 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 }
 
 - (void)startRender {
     
-    glClearColor(1.0, 1.0, 1.0, 1.0);
-    glClear(GL_COLOR_BUFFER_BIT);
-    
-    glBindVertexArray(_VAO);
-    [_compiler userProgram];
-    
-    glUniform1i(glGetAttribLocation(_compiler.program, "samplerY"), 0);
-    glUniform1i(glGetAttribLocation(_compiler.program, "samplerUV"), 1);
-    glUniformMatrix3fv(glGetAttribLocation(_compiler.program, "YUVToRGBColorMatrix"), 1, GL_FALSE, kColorConversion601FullRange);
-    
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-    
-    
-    [_context presentRenderbuffer:GL_RENDERER];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        glClearColor(1.0, 1.0, 1.0, 1.0);
+        glClear(GL_COLOR_BUFFER_BIT);
+        
+        glBindVertexArray(_VAO);
+        [_compiler userProgram];
+        
+        glUniform1i(glGetUniformLocation(_compiler.program, "SamplerY"), 0);
+        glUniform1i(glGetUniformLocation(_compiler.program, "SamplerUV"), 1);
+        glUniformMatrix3fv(glGetUniformLocation(_compiler.program, "colorConversionMatrix"), 1, GL_FALSE, kColorConversion601FullRange);
+        
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        
+        [_context presentRenderbuffer:GL_RENDERER];
+    });
 }
 
 - (void)clearObjects {
